@@ -1,0 +1,122 @@
+/* Docs Section Styling */
+.docs-section {
+    display: flex;
+    justify-content: center;
+    padding: 100px 20px;
+    background-color: rgba(42, 76, 35, 0.2); /* Semi-transparent background */
+    width: 100%;
+    border-radius: 10px; /* Rounded corners for the glass effect */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px; /* Adds spacing between Docs and Blog sections */
+    
+    /* Backdrop Effect */
+    position: relative; /* Ensures the backdrop-filter is applied correctly */
+    overflow: hidden; /* Ensures the backdrop does not spill outside the border radius */
+}
+
+/* Create the glass effect using ::before pseudo-element */
+.docs-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit; /* Inherit the background (semi-transparent) */
+    backdrop-filter: blur(20px); /* Apply blur effect to the background */
+    -webkit-backdrop-filter: blur(20px); /* For Safari support */
+    border-radius: inherit; /* Match border radius */
+    z-index: -1; /* Keeps the blur effect behind the content */
+}
+
+
+.docs-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns: Image and Text */
+    align-items: center;
+    gap: 150px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Left Column: Image */
+.docs-image img {
+    width: 33vw;
+    height: auto;
+    border-radius: 900px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.docs-section .docs-image {
+    max-width: 200%; /* Increased width to make the image larger */
+}
+
+/* Right Column: Content */
+.docs-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    opacity: 1; /* Full opacity for text and button */
+    color: #f3f4f6; /* Light text color for contrast */
+}
+
+.docs-subtitle {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #f6ff00; /* Light color for heading */
+}
+
+.docs-quote {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #5eb662; /* Slightly darker light color for quote */
+}
+
+.docs-btn {
+    padding: 15px 200px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #1f6f46;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.docs-btn:hover {
+    background-color: #3cb371;
+}
+
+/* Responsive Design for Smaller Screens */
+@media screen and (max-width: 768px) {
+    .docs-container {
+        grid-template-columns: 1fr; /* Stack columns */
+        text-align: center;
+        align-items: center;
+        gap: 50px;
+    }
+
+    .docs-image img {
+        width: 100%; /* Increase the image size on smaller screens */
+        height: auto;
+        max-width: 300px; /* Max width to avoid stretching */
+        margin: 0 auto;
+    }
+
+    .docs-subtitle {
+        text-align: center;
+        font-size: 3rem;
+    }
+
+    .docs-quote {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .docs-btn {
+        margin: 0 auto;
+    }
+}

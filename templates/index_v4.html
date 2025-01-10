@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AYUSH Virtual Garden</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        /* Main header and section styling */
+        .header {
+            background-color: #e1f5fe;
+            padding: 10px;  /* Adjusted padding */
+            display: flex;
+            justify-content: center;  /* Center horizontally */
+            align-items: center;  /* Vertically center the content */
+            height: 100px;  /* Set height of the header (adjust as needed) */
+        }
+        .section { padding: 50px 0; }
+        .card { margin: 10px; }
+
+        /* Styling for the "Get your next" section */
+        .next-section { background-color: #fff; padding: 50px 0; }
+        .next-header { font-size: 2.5rem; font-weight: bold; color: #333; text-align: center; margin-bottom: 40px; }
+        .next-grid { display: flex; justify-content: space-between; flex-wrap: wrap; }
+        .next-item { width: calc(33.33% - 20px); margin-bottom: 30px; }
+        .next-item img { width: 100%; border-radius: 8px; }
+        .next-item-title { font-size: 1.25rem; font-weight: bold; color: #555; text-align: center; margin-top: 10px; }
+        
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            
+        }
+
+        h2 {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: green;
+        }
+
+        /* Responsive design */
+        @media (max-width: 992px) {
+            .next-item { width: calc(50% - 20px); }
+        }
+
+        @media (max-width: 600px) {
+            .next-item { width: 100%; }
+        }
+
+        body {
+            background-image: url('imgBg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            
+        }
+        .header {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px; /* Adjusted padding */
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Vertically centers the content */
+            height: 100px; /* Height of the header (adjust as needed) */
+        }
+        .section { padding: 50px 0; background-color: rgba(255, 255, 255, 0.8); margin-bottom: 20px; }
+        .card { margin: 10px; }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center;/* Vertically center the content inside the nav-wrapper */width: 100%; }
+        .brand-logo { 
+            font-size: 1rem; 
+            font-weight: bold; 
+            color: green; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;  /* Vertically center the content */
+            text-align: center;
+            flex-direction: column;
+        }
+        .brand-logo img {
+            width: 50px; /* Adjust size of the icon */
+            height: 50px;
+            margin-right: 8px; /* Space between the icon and the text */
+            align-items: center; 
+            justify-content: center;  /* Vertically center the content */
+            text-align: center;
+            flex-direction: column;
+        }
+        .nav-links { display: flex; justify-content: flex-end; }
+        .nav-links a { color: green; margin-left: 20px; }
+        .nav-wrapper .center-align {
+            margin-left: 80px; /* Move content slightly to the right */
+        }
+        .brand-logo b {
+            display: inline-block;
+            font-size: 1.3rem;
+            line-height: 1.3;
+        }
+        .brand-logo b span {
+            display: block; /* Move 'Virtual Garden' below 'AYUSH' */
+            font-size: 1.3rem;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header" >
+        <nav class="green lighten-4" >
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo" style="color: green;">
+                    <img src="icon.jpg" alt="Icon">
+                    <b>AYUSH<span>Virtual Garden</span></b>
+                </a>
+                <ul id="nav-mobile" class="left hide-on-med-and-down"></ul>
+
+                <ul id="nav-mobile" class="center-align">
+                    <li><a href="#" style="color: green;">Home</a></li>
+                    <li><a href="#" style="color: green;">Explore</a></li>
+                    <li><a href="#" style="color: green;">Educational</a></li>
+                    <li><a href="#" style="color: green;">Community</a></li>
+                </ul>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    
+                    <li><a href="#" style="color: green;">Login</a></li>
+                    <li><a href="#" style="color: green;">Sign Up</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Get your next (Pinterest-style Section) -->
+    <div class="section next-section" id="next">
+        <div class="container">
+            <h2 class="next-header" style="color: green;">Get your next inspiration</h2>
+            <div class="next-grid">
+                <!-- Placeholder for Image 1 -->
+                <div class="next-item">
+                    <img src="img2.jpg" alt="Medicinal Plant Image 1">
+                    <div class="next-item-title">Medicinal Plant 1</div>
+                </div>
+                <!-- Placeholder for Image 2 -->
+                <div class="next-item">
+                    <img src="img1.jpg" alt="Medicinal Plant Image 2">
+                    <div class="next-item-title">Medicinal Plant 2</div>
+                </div>
+                <!-- Placeholder for Image 3 -->
+                <div class="next-item">
+                    <img src="img3.jpg" alt="Medicinal Plant Image 3">
+                    <div class="next-item-title">Medicinal Plant 3</div>
+                </div>
+                <!-- Placeholder for Image 4 -->
+                <div class="next-item">
+                    <img src="img3.jpg" alt="Medicinal Plant Image 3">
+                    <div class="next-item-title">Medicinal Plant 3</div>
+                </div>
+                <!-- Placeholder for Image 5 -->
+                <div class="next-item">
+                    <img src="img3.jpg" alt="Medicinal Plant Image 3">
+                    <div class="next-item-title">Medicinal Plant 3</div>
+                </div>
+                <!-- Placeholder for Image 6 -->
+                <div class="next-item">
+                    <img src="img3.jpg" alt="Medicinal Plant Image 3">
+                    <div class="next-item-title">Medicinal Plant 3</div>
+                </div>
+                <!-- Placeholder for additional images following same layout -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Section -->
+    <div class="section" id="search">
+        <div class="container">
+            <h2>Search</h2>
+            <!-- Placeholder for the Search section content -->
+        </div>
+    </div>
+
+    <!-- Explore Section -->
+    <div class="section" id="explore">
+        <div class="container">
+            <h2>Explore</h2>
+        </div>
+    </div>
+
+    <!-- Educational Section -->
+    <div class="section" id="educational">
+        <div class="container">
+            <h2>Educational Resources</h2>
+        </div>
+    </div>
+
+    <!-- Community Section -->
+    <div class="section" id="community">
+        <div class="container">
+            <h2>Community Discussions</h2>
+        </div>
+    </div>
+
+    <!-- Sign Up Section -->
+    <div class="section" id="signup">
+        <div class="container">
+            <h2>Sign Up to Get Your Ideas</h2>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer" style="background-color: #004d00; padding: 20px;">
+        <div class="container" style="color: #b2ff59; text-align: center;">
+            © 2024 AYUSH Virtual Garden
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

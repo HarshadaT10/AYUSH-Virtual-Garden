@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediPlant Search</title>
+    <style>
+        /* Basic styling for the form and inputs */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('img1.jpg'); /* Set the background image */
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Prevent repeating the image */
+            background-position: center; /* Center the background image */
+            color: white; /* Set text color to white for better visibility */
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50; /* Green color for the title */
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background for better contrast */
+            border-radius: 8px; /* Optional: Add rounded corners */
+        }
+
+        .input-field {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+        }
+
+        button, input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover, input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>MediPlant Search</h1>
+    <div class="container">
+        <form action="/search" method="post" class="search-form">
+            <!-- Search Option Selection -->
+            <div class="input-field">
+                <label for="search_option">Select Search Option:</label>
+                <select name="search_option" id="search_option" required>
+                    <option value="Botanical Name">Botanical Name</option>
+                    <option value="Common Name(s)">Common Name(s)</option>
+                    <option value="Parts Used">Parts Used</option>
+                    <option value="Medicinal Uses">Medicinal Uses</option>
+                    <option value="Active Compounds">Active Compounds</option>
+                    <option value="Geographical Distribution">Geographical Distribution</option>
+                </select>
+            </div>
+
+            <!-- Search Term Input -->
+            <div class="input-field">
+                <label for="search_term">Search Term:</label>
+                <input type="text" name="search_term" id="search_term" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn" value="Search">Search</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,182 @@
+/* Landing Page Styling for Pinterest-like Inspiration Section */
+.landing-page {
+    padding: 130px 0; /* Reduced vertical padding to pull content up */
+    background-color: transparent; /* Transparent background */
+    color: darkgreen; /* Ensure text is readable */
+    position: relative;
+    width: 50vw; /* Full width of the viewport */
+    margin-left: 0; /* Align content to the extreme left */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the left */
+    padding-left: 0; /* Remove left padding */
+    margin-top: 10px; /* Negative margin to pull up the section towards the navigation bar */
+}
+
+/* Header Text Style */
+.landing-header {
+    font-size: 3rem; /* Increased size for better visibility */
+    font-weight: bold;
+    color: White; /* Light green for a brighter contrast */
+    text-align: left; /* Align text to the left */
+    margin-bottom: 20px; /* Reduced margin bottom to bring content closer */
+    position: relative;
+    z-index: 1;
+    margin-left: 0; /* Align header to the extreme left */
+}
+
+/* Quote Text Styling */
+.landing-quotes .quote-line {
+    font-size: 3rem; /* Slightly larger for the second and third lines */
+    color: darkgreen; /* Light green color for better contrast */
+    text-align: left; /* Align text to the left */
+    margin: 15px 0;
+    margin-left: 0; /* Align quote lines to the extreme left */
+}
+
+/* First line with a larger font size */
+.landing-quotes .first-line {
+    font-size: 2.5rem; /* Larger font for first line */
+    color: White; /* White color for stronger emphasis */
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.landing-quotes .second-line {
+    font-size: 1.5rem; /* Larger font for first line */
+    color: White; /* White color for stronger emphasis */
+    font-weight: bold;
+}
+
+/* Dynamic word styling */
+.landing-quotes .third-line #dynamic-word {
+    font-size: 3.5rem; /* Same size as other lines */
+    color: lightgreen; /* White for the dynamic word */
+    font-weight: bold;
+    opacity: 0; /* Initially hidden */
+    animation: fadeLeftToRight 4s ease-in-out infinite; /* Apply fade left to right animation every 4 seconds */
+}
+
+/* Fade left to right Animation */
+@keyframes fadeLeftToRight {
+    0% {
+        opacity: 1;
+        transform: translateY(0); /* Start from the left */
+    }
+    50% {
+        opacity: 0;
+        transform: translateY(-30px); /* Center the word */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Move to the right */
+    }
+}
+
+/* Dot styling */
+.dots-container {
+    display: flex;
+    justify-content: flex-start; /* Align dots horizontally in the center */
+    margin-top: 10px; /* Space between words and dots */
+    margin-left: 0;
+    margin-bottom: 20px;
+}
+
+.dot {
+    width: 10px; /* Size of the dot */
+    height: 10px;
+    border-radius: 20%; /* Make it circular */
+    background-color: gray; /* Default color for light dots */
+    margin: 0 7px; /* Space between dots */
+    transition: background-color 0.3s ease; /* Smooth transition for color change */
+    cursor: pointer; /* Change cursor to pointer to indicate interactivity */
+}
+
+.dot.active {
+    background-color: darkgreen; /* Dark color when active */
+}
+
+/* Responsive styles for landing page */
+@media (max-width: 768px) {
+    .landing-page {
+        width: 90vw;
+        align-items: center;
+        padding-left: 10px;
+        margin-top: 0;
+        height: 100vh; /* Full viewport height for small screens */
+    }
+
+    .landing-header {
+        font-size: 4rem;
+        text-align: center;
+        margin: 40px 0;
+    }
+
+    .landing-quotes .first-line {
+        font-size: 4.2rem; /* Larger font size for the first line */
+        text-align: center;
+        margin-bottom: 15px; /* Added margin to create space below */
+    }
+
+    .landing-quotes .second-line {
+        font-size: 1.8rem; /* Smaller font size for the second line */
+        text-align: center;
+        margin-bottom: 15px; /* Added margin to create space below */
+    }
+
+    .landing-quotes .quote-line {
+        font-size: 2rem;
+        text-align: center;
+        margin: 40px 0;
+    }
+
+    /* Dynamic word size */
+    .landing-quotes .third-line #dynamic-word {
+        font-size: 3rem;
+        margin: 40px 0;
+    }
+
+    .dots-container {
+        justify-content: center;
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .landing-page {
+        width: 95vw;
+        margin: 20px 0;
+    }
+
+    .landing-header {
+        font-size: 3rem;
+        margin: 20px 0;
+    }
+
+    .landing-quotes .quote-line {
+        font-size: 1.5rem;
+        margin: 20px 0;
+    }
+
+    /* First line styling */
+    .first-line {
+        font-size: 3rem; /* Adjusted larger size for first line */
+        margin-bottom: 10px; /* Adjusted margin for separation */
+    }
+
+    /* Second line styling */
+    .second-line {
+        font-size: 1.5rem; /* Adjusted size for the second line */
+        margin-bottom: 10px; /* Adjusted margin for separation */
+    }
+
+    .landing-quotes .third-line #dynamic-word {
+        font-size: 3rem;
+        margin: 20px 0;
+    }
+
+    .dots-container {
+        justify-content: center;
+        margin-top: 30px;
+    }
+}

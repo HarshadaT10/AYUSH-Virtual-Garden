@@ -1,0 +1,156 @@
+/* /blogs css  */
+
+
+#community {
+    position: relative; /* Important for absolute positioning of the button */
+}
+/* Blog Section Styling */
+.blog-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 20px;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 100%;
+}
+
+/* Blog Header */
+.blog-header {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.blog-line {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2d462d;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Blog Container Grid Layout */
+.blog-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for blog posts */
+    gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Blog Column */
+.blog-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Blog Post Styling */
+.blog-post {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.blog-post img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.blog-post h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.blog-post p {
+    font-size: 1rem;
+    color: #5a5a5a;
+    margin-top: 10px;
+}
+
+/* Blog Button Container (Positioned Bottom Right) */
+.blog-btn-container {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+
+/* Blog Button Styling */
+.blog-btn {
+    padding: 12px 30px; /* Adjust padding for proper button size */
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #2d462d; /* Green background similar to other sections */
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blog-btn:hover {
+    background-color: #1f6f46; /* Darker green on hover */
+}
+
+.arrow {
+    margin-left: 10px; /* Space between text and arrow */
+    font-size: 1.2rem; /* Adjust size of the arrow */
+}
+
+@media screen and (max-width: 768px) {
+    .blog-btn-container {
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .blog-btn {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+}
+/* Responsive Design for Smaller Screens */
+@media screen and (max-width: 768px) {
+    .blog-container {
+        grid-template-columns: 1fr 1fr; /* Stack the columns for smaller screens */
+        gap: 20px;
+    }
+
+    .blog-header {
+        font-size: 2rem;
+    }
+
+    .blog-post img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .blog-post h3 {
+        font-size: 1.2rem;
+    }
+
+    .blog-post p {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .blog-container {
+        grid-template-columns: 1fr; /* Stack all blog posts in one column on very small screens */
+        gap: 20px;
+    }
+}

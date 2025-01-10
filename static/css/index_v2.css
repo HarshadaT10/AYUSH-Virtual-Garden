@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/* Apply background to the entire webpage */
+body {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Nunito, sans-serif;
+    color: darkgreen; /* Set default text color for readability */
+}
+
+/* Main header and section styling */
+.header {
+    background-color: rgba(0, 0, 0, 0);
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Increased header height */
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease; /* Smooth transition */
+}
+
+/* Blurred effect on landing page */
+.landing-page .header {
+    backdrop-filter: blur(10px); /* Applies blur effect only on landing page */
+    -webkit-backdrop-filter: blur(10px); /* Safari Support */
+}
+
+/* Darker background for other pages/sections */
+.scrolled .header {
+    background-color: rgba(0, 0, 0, 0.7); /* Darker background when scrolled */
+    backdrop-filter: none; /* Removes blur on scroll */
+    -webkit-backdrop-filter: none; /* Ensure it works in Safari */
+}
+
+/* Sticky Navbar */
+.transparent-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0); /* Fully transparent background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Remove default shadow */
+}
+
+/* Navigation wrapper */
+.transparent-nav .nav-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section {
+    padding: 20px 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 5px;
+}
+
+.card {
+    margin: 10px;
+}
+
+/* Navigation styling */
+.nav-wrapper {
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.brand-logo {
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: Nunito, sans-serif;
+    color: darkgreen; /* Dark green text color for AYUSH Virtual Garden */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 10px; /* Space between icon and text */
+    border-radius: 50%;
+}
+
+.brand-logo b {
+    color: lightgreen; /* Ensure "AYUSH Virtual Garden" text is dark green */
+    font-size: 1.8rem;
+}
+
+.brand-logo img {
+    width: 80px;
+    height: 70px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.nav-links a,
+.nav-wrapper .center-align a,
+.nav-wrapper .right a {
+    color: white; /* Dark green for Home, Explore, Educational, Community, Login, Sign Up */
+    margin-left: 1px;
+    font-size: 1rem; /* Slightly larger font size */
+    margin-right: 1px;
+}
+
+.nav-wrapper .center-align {
+    background-color: transparent;
+    margin-left: 120px; /* Move content slightly to the right */
+}
+
+/* Get your next section styling */
+.next-section {
+    background-color: rgba(255, 255, 255, 0.8); /* Matching background to Search section */
+    padding: 50px 0;
+}
+
+.next-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: darkgreen; /* Dark green text color for "Get your next inspiration" */
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.next-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.next-item {
+    width: calc(33.33% - 20px);
+    margin-bottom: 30px;
+}
+
+.next-item img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.next-item-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: darkgreen; /* Dark green text color for next item titles */
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Section headers */
+.section h2 {
+    color: darkgreen; /* Dark green for Search, Explore, Educational Resources, Community Discussions, Sign Up to Get Your Ideas */
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+    .next-item {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 600px) {
+    .next-item {
+        width: 100%;
+    }
+}
+
+/* Footer styling */
+.page-footer {
+    background-color: #004d00;
+    padding: 20px;
+    color: #b2ff59;
+    text-align: center;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Base Styles */
+.hamburger-menu {
+    display: none; /* Hide hamburger menu on desktop */
+}
+
+.mobile-nav {
+    display: none; /* Mobile navigation hidden by default */
+}
+
+/* Responsive styles for main sections */
+@media (max-width: 768px) {
+    .section {
+        padding: 50px 0;
+    }
+
+    .brand-logo img {
+        width: 60px;
+        height: 50px;
+    }
+
+    .brand-logo b {
+        font-size: 1.5rem;
+    }
+
+    .mobile-nav {
+        display: none; /* Mobile navigation hidden by default */
+    }
+
+    /* Display the hamburger icon */
+    .hamburger-menu {
+        display: block;
+        cursor: pointer;
+        font-size: 3rem;
+        color: darkgreen;
+        background-color: transparent;
+    }
+
+    /* Hide desktop navigation links on mobile */
+    .nav-wrapper .left, 
+    .nav-wrapper .center-align, 
+    .nav-wrapper .right {
+        display: none;
+    }
+
+    /* Mobile menu styles */
+    .mobile-nav {
+        display: none;
+        flex-direction: column;
+        background-color: white;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100vw;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+    }
+
+    .mobile-nav.active {
+        display: flex;
+    }
+
+    .mobile-nav a {
+        padding: 15px;
+        color: darkgreen;
+        text-align: center;
+        text-decoration: none;
+        font-weight: bold;
+        border-bottom: 1px solid lightgray;
+    }
+}
+
+/* Responsive layout adjustments for specific elements */
+@media (max-width: 600px) {
+    .next-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .next-item {
+        width: 90%;
+        margin: 10px 0;
+    }
+}
