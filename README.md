@@ -18,6 +18,9 @@ An interactive web application to educate and engage users about medicinal plant
 1. Clone the repository:  
    ```bash
    git clone https://github.com/your-username/AYUSH-Virtual-Garden.git  
+2. To run the project:
+    Run the following command in the terminal of the app.py file:
+    > python app.py
 
 ## License  
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.  
