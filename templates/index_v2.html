@@ -32,7 +32,7 @@
                 <ul id="nav-mobile" class="center-align">
                     <li><a href="#landing"><b>Home</b></a></li>
                     <li><a href="{{ url_for('search') }}"><b>Search</b></a></li>
-                    <li><a href="#"><b>Explore</b></a></li>
+                    <li><a href="{{ url_for('explore') }}"><b>Explore</b></a></li>
                     <li><a href="#"><b>Docs</b></a></li>
                     <li><a href="#"><b>Blog</b></a></li>
                 </ul>
@@ -45,7 +45,7 @@
                 <div class="mobile-nav">
                     <a href="#landing"><b>Home</b></a>
                     <a href="{{ url_for('search') }}"><b>Search</b></a>
-                    <a href="#"><b>Explore</b></a>
+                    <a href="{{ url_for('explore') }}"><b>Explore</b></a>
                     <a href="#"><b>Docs</b></a>
                     <a href="#"><b>Blog</b></a></li>
                     <a href="#"><b>Login</b></a></li>
@@ -118,7 +118,10 @@
             <div class="explore-content">
                 <h2>Explore Nature's Secrets</h2>
                 <p class="quote">Dive into the world of nature and explore through many more!! </p>
-                <button class="explore-btn">Explore</button>
+                <!-- <button class="explore-btn">Explore</button> -->
+                <a href="{{ url_for('explore') }}">
+                    <button class="explore-btn">Explore</button>
+                </a>
             </div>
             
             <!-- Right Column (Images) -->
@@ -153,7 +156,7 @@
         </div>
     </div>
 
-
+    <!-- Blog Section -->
     <div class="section" id="community">
         <div class="container">
             <h2 class="blog-header">Blogs</h2>

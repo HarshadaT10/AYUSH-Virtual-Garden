@@ -5,15 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AYUSH Virtual Garden</title>
     <style>
+        /* Navbar Styles */
+
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+        .navbar {
+            background-color: darkgreen;
+            padding: 4px 20px;
+            display: flex;
+            /* justify-content: space-between; */
+            align-items: center;
+            height: 60px;
+        }
+        
+        .navbar-logo {
+            height: 60px; /* Adjust logo size to match text height */
+            vertical-align: middle; /* Aligns the logo with the text */
+            padding-top: 6px; /* Adjust top padding to center the logo vertically */
+            padding-bottom: 12px; /* Adjust bottom padding to match top padding */
+            margin-left: -10px;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .navbar-logo-name {
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: -15px;
+        }
+        .navbar .nav-buttons {
+            display: flex;
+            gap: 5px; /* Reduced gap between the buttons */
+            margin-left: auto; /* Align buttons to the right */
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 15px;
+            font-size: 15spx;
+        }
+        .navbar a:hover {
+            background-color: rgba(3, 62, 18, 0.24);
+            backdrop-filter: blur(10px);
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+        }
+
+        /* Body Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: Nunito, sans-serif;
             background-color: #f4f4f4;
             color: #333;
             padding: 20px;
         }
+        
         h1 {
             text-align: center;
             color: darkgreen;
+            font-weight: bold;
         }
         .results-container {
             margin-top: 20px;
@@ -22,6 +74,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+        
         table {
             width: 100%;
             border-collapse: collapse;
@@ -44,6 +97,12 @@
         tr:hover {
             background-color: #f1f1f1;
         }
+        .back-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Reduced gap between buttons */
+            margin-top: 20px;
+        }
         a {
             display: block;
             text-align: center;
@@ -58,22 +117,25 @@
     </style>
 </head>
 <body style="background-image: url('{{ url_for('static', filename='images/img16.jpg') }}');">
+
+    <!-- Navbar -->
+    <div class="navbar">
+        
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Ayush Virtual Garden Logo" class="navbar-logo">
+        
+        <a href="/" class="navbar-logo-name">AYUSH Virtual Garden</a>       
+        <div class="nav-buttons">
+            <a href="/search">Back to Search</a>
+            <a href="/">Back to Home</a>
+        </div>
+    </div>
+
     <h1>Search Results</h1>
 
     <div class="container">
         
-        
-        {% if results %}
+       {% if results %}
             <table>
-                <thead>
-                    <tr>
-                        <th>Botanical Name</th>
-                        <th>Common Name(s)</th>
-                        <th>Medicinal Uses</th>
-                        <th>Active Compounds</th>
-                        <th>Method of Preparation</th>
-                    </tr>
-                </thead>
                 <tbody>
                     {{ results | safe }}
                 </tbody>

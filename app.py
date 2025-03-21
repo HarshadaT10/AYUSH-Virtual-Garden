@@ -4,7 +4,7 @@ from flask import Flask, render_template, request
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
 # Load the dataset
-data = pd.read_excel('Medical_plants1.xlsx')
+data = pd.read_excel('C:/Users/harsh/OneDrive/Desktop/MajorP-I/Medical_plants1.xlsx')
 
 @app.route('/')
 def index_v2():
@@ -52,6 +52,11 @@ def search():
 def search_page():
     # This route will render the search form page (search.html) when clicking 'search' from index_v2
     return render_template('search.html')
+
+@app.route('/explore')
+def explore():
+    return render_template('explore.html')
+
 
 @app.route('/back_to_home')
 def back_to_home():

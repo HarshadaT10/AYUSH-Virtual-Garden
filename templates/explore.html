@@ -1,0 +1,298 @@
+<!-- Explore Section -->
+<div class="section" id="explore">
+    <div class="container">
+
+        <!-- Explore Section Navbar -->
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="navbar-left">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Ayush Virtual Garden Logo" class="navbar-logo">
+                    <a href="/" class="logo">AYUSH Virtual Garden</a>
+                </div>
+                <div class="navbar-center">
+                    <div class="explore-header">Explore</div>
+                    <div class="explore-line">Discover the Wonders of AYUSH</div>
+                </div>
+                <div class="navbar-right">
+                    <a href="/">Back to Home</a>
+                </div>
+            </div>
+        </nav>
+
+        <h2 class="explore-header">.</h2>
+        <h4 class="explore-line">.</h4>
+
+        <div class="explore-container">
+            <!-- Ayurveda -->
+            <div class="explore-card">
+                <img src="{{ url_for('static', filename='images/exA.jpg') }}" alt="Ayurveda">
+                <h3>Ayurveda</h3>
+                <p>Ancient wisdom for holistic health and wellness.</p>
+                <!-- Button inside card -->
+                <a href="#ayurveda-details">
+                    <button class="explore-btn">
+                        Learn More
+                        <span class="arrow">&rarr;</span>
+                    </button>
+                </a>
+            </div>
+            <!-- Yoga -->
+            <div class="explore-card">
+                <img src="{{ url_for('static', filename='images/exY.jpg') }}" alt="Yoga">
+                <h3>Yoga</h3>
+                <p>Balance your mind, body, and soul with ancient practices.</p>
+                <!-- Button inside card -->
+                <a href="#yoga-details">
+                    <button class="explore-btn">
+                        Learn More
+                        <span class="arrow">&rarr;</span>
+                    </button>
+                </a>
+            </div>
+            <!-- Naturopathy -->
+            <div class="explore-card">
+                <img src="{{ url_for('static', filename='images/exN.jpg') }}" alt="Naturopathy">
+                <h3>Naturopathy</h3>
+                <p>Healing through natural remedies and lifestyle.</p>
+                <!-- Button inside card -->
+                <a href="#naturopathy-details">
+                    <button class="explore-btn">
+                        Learn More
+                        <span class="arrow">&rarr;</span>
+                    </button>
+                </a>
+            </div>
+            <!-- Unani -->
+            <div class="explore-card">
+                <img src="{{ url_for('static', filename='images/exU.jpg') }}" alt="Unani">
+                <h3>Unani</h3>
+                <p>Time-tested treatments with herbal and holistic approaches.</p>
+                <!-- Button inside card -->
+                <a href="#unani-details">
+                    <button class="explore-btn">
+                        Learn More
+                        <span class="arrow">&rarr;</span>
+                    </button>
+                </a>
+            </div>
+            <!-- Siddha -->
+            <div class="explore-card">
+                <img src="{{ url_for('static', filename='images/exS.jpg') }}" alt="Siddha">
+                <h3>Siddha</h3>
+                <p>Ancient Tamil medicine rooted in nature’s secrets.</p>
+                <!-- Button inside card -->
+                <a href="#siddha-details">
+                    <button class="explore-btn">
+                        Learn More
+                        <span class="arrow">&rarr;</span>
+                    </button>
+                </a>
+            </div>
+            <!-- Homeopathy -->
+            <div class="explore-card">
+                <img src="{{ url_for('static', filename='images/exH.jpg') }}" alt="Homeopathy">
+                <h3>Homeopathy</h3>
+                <p>Gentle and effective natural healing methods.</p>
+                <!-- Button inside card -->
+                <a href="#homeopathy-details">
+                    <button class="explore-btn">
+                        Learn More
+                        <span class="arrow">&rarr;</span>
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="explore-btn-container">
+            <a href="#">
+                <button class="explore-btn">
+                    See All Categories
+                    <span class="arrow">&rarr;</span>
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Inline CSS for Explore Section (3 Cards per Row) -->
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+    /* Background with Dark Overlay */
+    body {
+        background: url("{{ url_for('static', filename='images/exbg2.jpg') }}") no-repeat center center fixed;
+        background-size: cover;
+        position: relative;
+        font-family: Nunito, sans-serif;
+    }
+
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Dark overlay for clarity */
+        z-index: -1;
+    }
+    
+    .explore-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 columns */
+        gap: 20px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .explore-card {
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .explore-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .explore-card img {
+        width: 100%;
+        border-radius: 8px;
+        height: 180px;
+        object-fit: cover;
+    }
+
+    .explore-card h3 {
+        margin-top: 10px;
+        font-size: 1.5rem;
+        color: #2c5f2d;
+    }
+
+    .explore-card p {
+        font-size: 1rem;
+        color: #444;
+        margin-top: 5px;
+    }
+
+    .explore-btn-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .explore-btn {
+        background-color: #2c5f2d;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        font-size: 1.2rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .explore-btn:hover {
+        background-color: #1e431e;
+    }
+
+    .arrow {
+        margin-left: 8px;
+    }
+
+    /* Navbar Style */
+    .navbar {
+        background-color:rgba(38, 29, 22, 0.92);
+        padding: 10px 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 97%;
+        z-index: 10;
+    }
+
+    .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .navbar-logo {
+        height: 60px; /* Adjust logo size to match text height */
+        vertical-align: middle; /* Aligns the logo with the text */
+        padding-top: 6px; /* Adjust top padding to center the logo vertically */
+        padding-bottom: 12px; /* Adjust bottom padding to match top padding */
+        margin-left: -10px;
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .navbar-left a {
+        color:rgb(195, 192, 192);
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+        font-family: Nunito, sans-serif;
+        
+    }
+
+    .navbar-center {
+        text-align: center;
+        flex-grow: 1;
+        padding-right: 170px;
+        padding-top: 17px; /* Adjust top padding to center the logo vertically */
+        padding-bottom: 12px; /* Adjust bottom padding to match top padding */
+        font-family: Nunito, sans-serif;
+    }
+
+    .explore-header {
+        font-weight: bold;
+        font-size: 1.8rem;
+        color: rgb(140, 201, 141);
+        margin: 0;
+        font-family: Nunito, sans-serif;
+    }
+
+    .explore-line {
+        font-size: 1rem;
+        color: #ddd;
+        font-family: Nunito, sans-serif;
+    }
+
+    .navbar-right {
+        display: flex;
+        gap: 5px;
+        margin-left: auto;
+        font-weight: bold;
+        padding-top: 25px; /* Adjust top padding to center the logo vertically */
+        padding-bottom: 10px; /* Adjust bottom padding to match top padding */
+        font-family: Nunito, sans-serif;
+    }
+
+    .navbar-right a {
+        color: white;
+        font-size: 1rem;
+        text-decoration: none;
+        font-family: Nunito, sans-serif;
+    }
+
+    .navbar-right a:hover {
+        color: #b0e57c;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 900px) {
+        .explore-container {
+            grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+        }
+    }
+
+    @media (max-width: 600px) {
+        .explore-container {
+            grid-template-columns: repeat(1, 1fr); /* 1 column on mobile */
+        }
+    }
+</style>
