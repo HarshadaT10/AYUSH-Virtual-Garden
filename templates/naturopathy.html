@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayurveda - AYUSH Virtual Garden</title>
+    <style>
+        /* General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(88, 64, 26, 0.53);
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar-left a {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #a8d5ba;
+            text-decoration: none;
+        }
+
+        .navbar-left a:hover {
+            color: #ffffff;
+        }
+
+        .navbar-center {
+            text-align: center;
+        }
+
+        .navbar-center h1 {
+            font-size: 1.5rem;
+            color: #a8d5ba;
+        }
+
+        .navbar-center p {
+            font-size: 0.9rem;
+            color: #d2f0d2;
+        }
+
+        .navbar-right a {
+            text-decoration: none;
+            color: #a8d5ba;
+            font-weight: bold;
+            border: 2px solid #a8d5ba;
+            padding: 5px 15px;
+            border-radius: 20px;
+            transition: background 0.3s, color 0.3s;
+            margin-left: 10px;
+        }
+
+        .navbar-right a:hover {
+            background-color: #a8d5ba;
+            color: #0d270d;
+        }
+
+        /* Remove default link styling for card titles */
+        .navbar-left a {
+            text-decoration: none; /* Remove underline */
+            color: #2c6e49; /* Set color to match the card text */
+        }
+
+        .navbar-left a:hover {
+            color: #1f5a35; /* Change color on hover for a subtle effect */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('https://media.istockphoto.com/id/1255236230/photo/body-mind-soul-spirit.jpg?s=612x612&w=0&k=20&c=GR0wKYibbxqL1BxQYXY8vvSq_BzOieiQSorNrlVl1MA=') no-repeat center center fixed; /* Background image */
+            background-size: cover;
+            color: #4b6e59; /* Soft green */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1, h2, h3 {
+            color: #3a5a40; /* Darker green */
+        }
+
+        h1 {
+            text-align: center;
+            padding: 30px;
+            font-size: 3em; /* Increased font size */
+        }
+
+        .section-header {
+            text-align: center;
+            font-size: 2.5em; /* Increased font size */
+            margin: 40px 0;
+            color: #6b8e23;
+        }
+
+        .section {
+            background-color: rgba(255, 255, 255, 0.8); /* Slight transparency */
+            margin: 20px;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 80%;
+            margin: 20px auto;
+        }
+
+        .section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Button Styling */
+        .button {
+            background-color: #6b8e23;
+            color: white;
+            padding: 15px 30px;
+            text-align: center;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            background-color: #556b2f;
+        }
+
+        /* Links */
+        a {
+            color: #6b8e23;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #4b6e59;
+        }
+
+        /* Video Embeds */
+        iframe {
+            width: 80%;
+            height: 500px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* List Items */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            font-size: 1.5em; /* Larger font size for content */
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-left" >
+            <a href="{{ url_for('index_v2') }}">🌿 AYUSH Virtual Garden</a>
+        </div>
+        <div class="navbar-center">
+            <h1></h1>
+            <p></p>
+        </div>
+        <div class="navbar-right">
+            <a href="/explore">Back to Explore</a>
+            <a href="{{ url_for('index_v2') }}">Back Home</a>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <h1>Naturopathy: Healing with Nature</h1>
+
+    <!-- Introduction Section -->
+    <div class="section">
+        <h2 class="section-header">What is Naturopathy?</h2>
+        <p style="font-size: 1.6em;">Naturopathy is a natural healing practice that focuses on using the body's intrinsic ability to heal itself. By promoting the body's natural detoxification processes, naturopathy aims to restore balance and well-being using non-invasive methods like nutrition, herbal medicine, and hydrotherapy.</p>
+        <p style="font-size: 1.6em;">It emphasizes holistic treatment for the body, mind, and spirit, recognizing the importance of maintaining harmony with nature. Naturopathy combines both ancient wisdom and modern scientific approaches.</p>
+    </div>
+
+    <!-- Health Benefits Section -->
+    <div class="section">
+        <h2 class="section-header">Health Benefits of Naturopathy</h2>
+        <ul>
+            <li><strong>Detoxification:</strong> Naturopathy helps remove toxins from the body, supporting the liver, kidneys, and digestive system.</li>
+            <li><strong>Stress Relief:</strong> Techniques like massage, hydrotherapy, and meditation reduce stress and enhance mental well-being.</li>
+            <li><strong>Improved Digestion:</strong> Herbal remedies and dietary changes improve digestion and gut health.</li>
+            <li><strong>Boosted Immune System:</strong> Naturopathy uses natural methods to strengthen the immune system and fight off illness.</li>
+        </ul>
+        <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4277364/" class="button" target="_blank">Read More on Naturopathy Benefits</a>
+    </div>
+
+    <!-- Herbal Remedies Section -->
+    <div class="section">
+        <h2 class="section-header">Popular Herbal Remedies</h2>
+        <p style="font-size: 1.6em;">Herbal remedies are an essential part of naturopathy. Some popular herbs include:</p>
+        <ul>
+            <li><strong>Aloe Vera:</strong> Used for skin healing and digestion.</li>
+            <li><strong>Ginger:</strong> Known for its anti-inflammatory and digestive properties.</li>
+            <li><strong>Turmeric:</strong> A powerful antioxidant with anti-inflammatory benefits.</li>
+            <li><strong>Lavender:</strong> Used for relaxation and stress relief.</li>
+        </ul>
+        <a href="https://www.healthline.com/health/herbal-remedies-from-your-garden" class="button" target="_blank">Explore More Herbal Remedies</a>
+    </div>
+
+    <!-- External Links -->
+    <div class="section">
+        <h2 class="section-header">Additional Resources</h2>
+        <p style="font-size: 1.6em;">For further learning, check out these reputable resources:</p>
+        <ul>
+            <li><a href="https://www.naturopathy-uk.com/" target="_blank">British Naturopathy Association</a></li>
+            <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3792327/" target="_blank">Naturopathy: An Overview</a></li>
+            <li><a href="https://www.drweil.com/health-and-wellness/natural-health/natural-healing/" target="_blank">Dr. Andrew Weil on Natural Healing</a></li>
+        </ul>
+    </div>
+
+</body>
+</html>

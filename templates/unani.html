@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayurveda - AYUSH Virtual Garden</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing:
+            border-box;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(88, 64, 26, 0.76);
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar-left a {
+            font-weight: bold;
+            font-size: 1.6rem;
+            color:rgb(35, 21, 5);
+            text-decoration: none;
+        }
+
+        .navbar-left a:hover {
+            color: #ffffff;
+        }
+
+        .navbar-center {
+            text-align: center;
+        }
+
+        .navbar-center h1 {
+            font-size: 2.0rem;
+            color:rgb(1, 20, 9);
+        }
+
+        .navbar-center p {
+            font-size: 1.3rem;
+            color:rgb(37, 36, 35);
+            font-weight: bold;
+        }
+
+        .navbar-right a {
+            text-decoration: none;
+            color: #a8d5ba;
+            font-weight: bold;
+            border: 2px solid #a8d5ba;
+            padding: 5px 15px;
+            border-radius: 20px;
+            transition: background 0.3s, color 0.3s;
+            margin-left: 10px;
+        }
+
+        .navbar-right a:hover {
+            background-color: #a8d5ba;
+            color: #0d270d;
+        }
+
+        /* Remove default link styling for card titles */
+        .navbar-left a {
+            text-decoration: none; /* Remove underline */
+            color:rgb(30, 16, 8); /* Set color to match the card text */
+            font-weight: bold;
+        }
+
+        .navbar-left a:hover {
+            color: #1f5a35; /* Change color on hover for a subtle effect */
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://www.socvaped.org/wp-content/uploads/2021/08/herbs-906140_1280.jpg'); /* Background Image */
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            color: #3E4A3D;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: #6C4F2B;
+        }
+
+        h2 {
+            font-size: 2.0em;
+            color: #5D6D4E;
+        }
+
+        p {
+            font-size: 1.0m;
+            color: #4E5B31;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .content-section {
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section a {
+            color: #6C4F2B;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .content-section a:hover {
+            color: #3E4A3D;
+        }
+
+        .btn {
+            background-color: rgb(245, 243, 242);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #5D6D4E;
+            color: white;
+        }
+
+        /* Section Colors */
+        .intro-section {
+            background-color: #F7E9D7; /* Light yellow */
+        }
+
+        .health-benefits-section {
+            background-color: #E6F4EA; /* Light green */
+        }
+
+        .history-section {
+            background-color: #FFEBE0; /* Light peach */
+        }
+
+        .resources-section {
+            background-color: #D1E8E2; /* Light teal */
+        }
+
+        .quote-section {
+            background-color: #F9F9F9; /* Light gray */
+        }
+
+        .conclusion-section {
+            background-color: #F2E6D7; /* Light beige */
+        }
+
+        .image-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 2px;
+            background-color: #6C4F2B;
+            margin: 40px 0;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #5D6D4E;
+        }
+
+        .quote-author {
+            font-weight: bold;
+            color: #6C4F2B;
+        }
+
+        /* Button under 'What is Unani?' */
+        .read-more-btn {
+            display: inline-block;
+            background-color:rgb(209, 193, 178);
+            color: white;
+            padding: 10px 20px;
+            margin-top: 15px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .read-more-btn:hover {
+            background-color:rgb(255, 255, 255);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-left" >
+            <a href="{{ url_for('index_v2') }}">🌿 AYUSH Virtual Garden</a>
+        </div>
+        <div class="navbar-center">
+            <h1> UNANI </h1>
+            <p> A Timeless Healing Tradition </p>
+        </div>
+        <div class="navbar-right">
+            <a href="/explore">Back to Explore</a>
+            <a href="{{ url_for('index_v2') }}">Back Home</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Unani Medicine: A Timeless Healing Tradition</h1>
+
+        <!-- Introduction Section -->
+        <div class="content-section intro-section">
+            <h2>What is Unani Medicine?</h2>
+            <p>Unani medicine is a traditional system of healing and health maintenance that originated in ancient Greece and was later developed in the Arab world. The system is based on the concept of balancing the four essential humors (blood, phlegm, yellow bile, and black bile) to maintain health and well-being.</p>
+            <a href="https://en.wikipedia.org/wiki/Unani" class="read-more-btn" >Read More</a>
+        </div>
+
+        <!-- Health Benefits Section -->
+        <div class="content-section health-benefits-section">
+            <h2>Health Benefits of Unani Medicine</h2>
+            <p>Unani medicine offers several potential health benefits:</p>
+            <ul>
+                <li>Improved digestion and metabolism</li>
+                <li>Enhanced immunity and resistance to diseases</li>
+                <li>Reduction of stress and anxiety</li>
+                <li>Natural detoxification</li>
+                <li>Support for chronic conditions like arthritis and asthma</li>
+            </ul>
+        </div>
+
+        <!-- History and Practices Section -->
+        <div class="content-section history-section">
+            <h2>History & Practices of Unani Medicine</h2>
+            <p>Unani medicine traces its roots back to Greek and Roman times, with Hippocrates and Galen making significant contributions to its understanding. Later, Islamic scholars such as Avicenna (Ibn Sina) refined and popularized the system. The Unani system focuses on the balance of the body's humors and natural therapies to restore harmony.</p>
+        </div>
+
+        <!-- External Resources Section -->
+        <div class="content-section resources-section">
+            <h2>Learn More About Unani Medicine</h2>
+            <p>Here are some useful resources to deepen your understanding of Unani Medicine:</p>
+            <ul>
+                <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3284990/" target="_blank">NCBI Article on Unani Medicine</a></li>
+                <li><a href="https://www.webmd.com/vitamins/ai/ingredientmono-1020/unani-medicine" target="_blank">WebMD: Overview of Unani Medicine</a></li>
+            </ul>
+        </div>
+
+        <!-- Quote Section -->
+        <div class="content-section quote-section">
+            <h2>Words of Wisdom</h2>
+            <p class="quote">"Let food be thy medicine, and medicine be thy food." – Hippocrates</p>
+            <p class="quote-author">Hippocrates</p>
+        </div>
+
+        <!-- Conclusion Section -->
+        <div class="content-section conclusion-section">
+            <h2>Embrace Natural Healing with Unani Medicine</h2>
+            <p>Unani medicine offers a natural and holistic approach to healing, focusing on the balance of the body, mind, and spirit. Explore its rich history and embrace its timeless practices to promote a healthier lifestyle.</p>
+            <a href="https://www.unani.org" class="btn">Explore Unani Medicine</a>
+        </div>
+
+        <div class="section-divider"></div>
+    </div>
+
+</body>
+</html>

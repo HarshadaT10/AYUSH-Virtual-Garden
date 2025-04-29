@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayurveda - AYUSH Virtual Garden</title>
+    <style>
+        /* General Layout */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f0e1;
+            color: #4b4b4b;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(13, 39, 13);
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar-left a {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #a8d5ba;
+            text-decoration: none;
+        }
+
+        .navbar-left a:hover {
+            color: #ffffff;
+        }
+
+        .navbar-center {
+            text-align: center;
+        }
+
+        .navbar-center h1 {
+            font-size: 1.5rem;
+            color: #a8d5ba;
+        }
+
+        .navbar-center p {
+            font-size: 0.9rem;
+            color: #d2f0d2;
+        }
+
+        .navbar-right a {
+            text-decoration: none;
+            color: #a8d5ba;
+            font-weight: bold;
+            border: 2px solid #a8d5ba;
+            padding: 5px 15px;
+            border-radius: 20px;
+            transition: background 0.3s, color 0.3s;
+            margin-left: 10px;
+        }
+
+        .navbar-right a:hover {
+            background-color: #a8d5ba;
+            color: #0d270d;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 80px 50px;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .hero-text {
+            padding-right: 40px;
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+            letter-spacing: 1.5px;
+        }
+
+        .hero-text p {
+            font-size: 22px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+        }
+
+        .hero-image img {
+            display: none;
+        }
+
+        .btn-main {
+            background-color: #ffffff;
+            color: rgb(196, 130, 86);
+            padding: 15px 30px;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-main:hover {
+            background-color: rgb(196, 130, 86);
+            color: white;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 60px 50px;
+            background-color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .section-container h2 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .section-container p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        /* List Styling */
+        ul {
+            margin-top: 20px;
+            padding-left: 40px;
+            text-align: left;
+        }
+
+        ul li {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        /* Grid Layout for Treatments */
+        .treatment-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .treatment-card {
+            background-color:rgb(191, 172, 172);
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .treatment-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .treatment-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .treatment-card p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .treatment-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* 🧠 Philosophy Section */
+        .philosophy-container {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 3rem;
+        background: #fafaf5;
+        align-items: center;
+        justify-content: center;
+        }
+
+        .illustration img {
+        width: 300px;
+        max-width: 100%;
+        }
+
+        .philosophy-content {
+        flex: 1;
+        margin-left: 2rem;
+        }
+
+        .philosophy-content h2{
+            text-align: center;
+        }
+
+        .philosophy-content p{
+            text-align: center;
+        }
+
+        .doshas-cards {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+        }
+
+        .dosha-card {
+        flex: 1;
+        border-radius: 20px;
+        padding: 1rem;
+        color: white;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .vata { background: #a3c7d6; }
+        .pitta { background: #f78e69; }
+        .kapha { background: #8abf84; }
+
+        /* 🧪 Core Concepts Section */
+        .ayurveda-core-concepts {
+        padding: 3rem;
+        background: #f0f7f4;
+        text-align: center;
+        }
+
+        .concepts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+        }
+
+        .concept-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+        }
+
+        .concept-card:hover {
+        transform: translateY(-8px);
+        }
+
+        /* 🧘‍♂️ Daily Life Timeline */
+        .ayurveda-daily-life {
+        padding: 3rem;
+        background: #f9f5f0;
+        }
+
+        .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 2rem;
+        }
+
+        .timeline-item {
+        background: #fff;
+        padding: 1.5rem;
+        border-left: 5px solid #91b494;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .timeline-item h3 {
+        margin-top: 0.5rem;
+        color: #3d5a40;
+        }
+
+        /* Read More Button */
+        .btn-read-more {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #91b494;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-read-more:hover {
+            background-color: #6c9a77;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 30px 50px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 16px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+                padding: 50px 20px;
+                height: auto;
+            }
+
+            .treatment-cards {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+            }
+
+            .navbar-left {
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .treatment-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ayurveda-page">
+
+        <!-- Navbar -->
+        <div class="navbar">
+            <div class="navbar-left">
+                <a href="{{ url_for('index_v2') }}">🌿 AYUSH Virtual Garden</a>
+            </div>
+            <div class="navbar-center">
+                <h1>AYURVEDA</h1>
+                <p>Explore Ayurveda: Ancient Wisdom for Modern Living</p>
+            </div>
+            <div class="navbar-right">
+                <a href="/explore">Back to Explore</a>
+                <a href="{{ url_for('index_v2') }}">Back Home</a>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero-section" style="background-image: url('{{ url_for('static', filename='images/exA.jpg') }}');">
+            <div class="hero-text">
+                <h1>Discover Ayurveda</h1>
+                <p>Ancient Wisdom for Holistic Health and Wellness</p>
+                <a href="#overview" class="btn-main">Learn More</a>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section id="overview" class="section">
+            <div class="section-container">
+                <h2>🧭 What is Ayurveda?</h2>
+                <p>Ayurveda, meaning "Science of Life", is an ancient Indian holistic healing system that emphasizes balance between the body, mind, and spirit. It focuses on the root cause of ailments and offers natural solutions through lifestyle changes, diet, herbs, yoga, and meditation.</p>
+                <a href="https://en.wikipedia.org/wiki/Ayurveda" class="btn-read-more" target="_blank">Read More</a>
+            </div>
+        </section>
+
+        <!-- 🧠 Section 1: The Philosophy Behind Ayurveda -->
+        <section class="ayurveda-philosophy">
+            <div class="philosophy-container">
+        
+                <div class="philosophy-content">
+                    <h2>The Five Elements and Doshas</h2>
+                    <p>Ayurveda is based on five elements: Earth, Water, Fire, Air, and Space. These combine to form three Doshas - Vata, Pitta, and Kapha - that govern body functions.</p>
+                    
+                    <div class="doshas-cards">
+                    <div class="dosha-card vata">
+                        <h3>Vata</h3>
+                        <p>Movement, creativity, dryness. <br>Imbalances: anxiety, dry skin.</p>
+                    </div>
+                    <div class="dosha-card pitta">
+                        <h3>Pitta</h3>
+                        <p>Metabolism, digestion, heat. <br>Imbalances: anger, inflammation.</p>
+                    </div>
+                    <div class="dosha-card kapha">
+                        <h3>Kapha</h3>
+                        <p>Structure, lubrication, stability. <br>Imbalances: lethargy, congestion.</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🧪 Section 2: Core Concepts -->
+        <section class="ayurveda-core-concepts">
+            <h2>Core Concepts of Ayurveda</h2>
+            <div class="concepts-grid">
+            <div class="concept-card">
+                🔍<h3>Dosha Quiz</h3>
+                <p>Discover your unique body constitution.</p>
+            </div>
+            <div class="concept-card">
+                ☀️<h3>Dinacharya</h3>
+                <p>Daily routines for health and balance.</p>
+            </div>
+            <div class="concept-card">
+                🌦️<h3>Ritucharya</h3>
+                <p>Seasonal practices for harmony.</p>
+            </div>
+            <div class="concept-card">
+                🌿<h3>Herbal Remedies</h3>
+                <p>Nature’s pharmacy for wellbeing.</p>
+            </div>
+            <div class="concept-card">
+                🌀<h3>Panchakarma</h3>
+                <p>Detoxification and rejuvenation therapies.</p>
+            </div>
+            <div class="concept-card">
+                🥗<h3>Ayurvedic Diet</h3>
+                <p>Eating according to your Dosha.</p>
+            </div>
+            </div>
+        </section>
+        
+        <!-- 🧘‍♂️ Section 3: Ayurveda in Daily Life -->
+        <section class="ayurveda-daily-life">
+            <h2>Ayurveda in Daily Life</h2>
+            <div class="timeline">
+            <div class="timeline-item">
+                🛌 <h3>Morning Routine</h3>
+                <p>Oil pulling, tongue scraping, meditation, herbal teas.</p>
+            </div>
+            <div class="timeline-item">
+                🧘 <h3>Midday Practices</h3>
+                <p>Mindful eating, work breaks, sun exposure.</p>
+            </div>
+            <div class="timeline-item">
+                🍵 <h3>Evening Rituals</h3>
+                <p>Gentle yoga, light dinner, calming herbal infusions.</p>
+            </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section id="benefits" class="section">
+            <div class="section-container">
+                <h2>✅ Benefits of Ayurveda</h2>
+                <p>Ayurveda offers a holistic approach to well-being, focusing on disease prevention and health optimization. Some key benefits include:</p>
+                <ul>
+                    <li>Improved digestion and metabolism</li>
+                    <li>Reduced stress and mental clarity</li>
+                    <li>Enhanced immune system</li>
+                    <li>Natural anti-aging effects</li>
+                    <li>Better emotional health</li>
+                </ul>
+                <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3651579/" class="btn-read-more" target="_blank">Read More</a>
+            </div>
+        </section>
+
+        <!-- Ayurvedic Treatments Section -->
+        <section id="treatments" class="section">
+            <div class="section-container">
+                <h2>Ayurvedic Treatments</h2>
+                <div class="treatment-cards">
+                    <div class="treatment-card">
+                        <h3>Panchakarma</h3>
+                        <p>A detoxification and purification treatment designed to cleanse the body and balance the doshas.</p>
+                        <a href="https://www.healthline.com/health/panchakarma" class="btn-read-more" target="_blank">Read More</a>
+                    </div>
+                    <div class="treatment-card">
+                        <h3>Herbal Remedies</h3>
+                        <p>Using natural herbs to heal the body, support immunity, and address specific health concerns.</p>
+                        <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3471894/" class="btn-read-more" target="_blank">Read More</a>
+                    </div>
+                    <div class="treatment-card">
+                        <h3>Ayurvedic Diet</h3>
+                        <p>Personalized diets based on body constitution (dosha) to promote health and prevent disease.</p>
+                        <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6429358/" class="btn-read-more" target="_blank">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2025 AYUSH Virtual Garden. All Rights Reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

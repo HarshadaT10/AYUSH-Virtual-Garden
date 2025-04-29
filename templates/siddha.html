@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayurveda - AYUSH Virtual Garden </title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing:
+            border-box;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(88, 64, 26, 0.76);
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar-left a {
+            font-weight: bold;
+            font-size: 1.6rem;
+            color:rgb(35, 21, 5);
+            text-decoration: none;
+        }
+
+        .navbar-left a:hover {
+            color: #ffffff;
+        }
+
+        .navbar-center {
+            text-align: center;
+        }
+
+        .navbar-center h1 {
+            font-size: 2.0rem;
+            color:rgb(1, 20, 9);
+        }
+
+        .navbar-center p {
+            font-size: 1.3rem;
+            color:rgb(37, 36, 35);
+            font-weight: bold;
+        }
+
+        .navbar-right a {
+            text-decoration: none;
+            color: #a8d5ba;
+            font-weight: bold;
+            border: 2px solid #a8d5ba;
+            padding: 5px 15px;
+            border-radius: 20px;
+            transition: background 0.3s, color 0.3s;
+            margin-left: 10px;
+        }
+
+        .navbar-right a:hover {
+            background-color: #a8d5ba;
+            color: #0d270d;
+        }
+
+        /* Remove default link styling for card titles */
+        .navbar-left a {
+            text-decoration: none; /* Remove underline */
+            color:rgb(30, 16, 8); /* Set color to match the card text */
+            font-weight: bold;
+        }
+
+        .navbar-left a:hover {
+            color: #1f5a35; /* Change color on hover for a subtle effect */
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("static/images/img10.jpg"); /* Relative path */
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+        
+
+        /* Container for the whole page */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 40px 20px;
+            margin-bottom: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header Section */
+        h1 {
+            font-size: 3em;
+            color: #2C6B3B;
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h2 {
+            color: #4E6E3F;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #2C6B3B;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        /* Content Text */
+        p, ul {
+            color:rgb(124, 196, 124);
+            line-height: 1.7;
+            font-size: 1.2em;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        .highlight {
+            color: #3B8C47;
+            font-weight: bold;
+        }
+
+        /* Links */
+        a {
+            color: #4E8B6F;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #2C6B3B;
+        }
+
+        /* Creative Philosophy Section */
+        .philosophy-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .philosophy-item {
+            width: 30%;
+            background-color: #2C6B3B;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .philosophy-item h4 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .philosophy-item p {
+            font-size: 1.1em;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #4E8B6F;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #3B7A57;
+        }
+
+        /* Section Dividers */
+        .section-divider {
+            width: 100%;
+            height: 2px;
+            background-color: #2C6B3B;
+            margin: 40px 0;
+        }
+
+        /* Styling for Image Gallery */
+        .image-gallery {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .image-gallery img {
+            width: 30%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Quote Styling */
+        .quote {
+            font-style: italic;
+            color: #4E6E3F;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .quote-author {
+            font-weight: bold;
+            color: #2C6B3B;
+            font-size: 1.1em;
+        }
+
+        /* Footer Section */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2C6B3B;
+            color: white;
+            font-size: 1em;
+        }
+
+        footer a {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-left" >
+            <a href="{{ url_for('index_v2') }}">🌿 AYUSH Virtual Garden</a>
+        </div>
+        
+        <div class="navbar-right">
+            <a href="/explore">Back to Explore</a>
+            <a href="{{ url_for('index_v2') }}">Back Home</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- Header -->
+        <h1>🌿 Explore Siddha Medicine</h1>
+
+        <!-- What is Siddha Medicine? -->
+        <section>
+            <h2>🧭 What is Siddha Medicine?</h2>
+            <p>Siddha Medicine is one of the oldest traditional healing systems, originating in Tamil Nadu, South India. It is based on the teachings of the Siddhars, spiritual sages and enlightened masters of the ancient Tamil civilization. Siddha is a holistic system of healing that focuses on physical, mental, and spiritual health, with an emphasis on restoring balance in the body.</p>
+            <p>The Siddha system aims to promote well-being and longevity by maintaining the harmony of the three humors — Vata, Pitta, and Kapha — and the five elements of nature.</p>
+            <a href="https://en.wikipedia.org/wiki/Siddha_medicine" class="btn more-btn">More</a> <!-- 'More' Button linking to an external page -->
+        </section>
+        </section>
+
+        <div class="section-divider"></div>
+
+
+        <!-- Philosophy and Core Principles -->
+        <section>
+            <h2>🧠 Philosophy and Core Principles of Siddha</h2>
+            <p>Siddha medicine is founded on the belief that the body, mind, and spirit are interconnected and must be balanced for overall well-being. It emphasizes that human health is a reflection of cosmic harmony. Here are the fundamental principles of Siddha:</p>
+
+            <div class="philosophy-container">
+                <div class="philosophy-item">
+                    <h4>Panchabhuta (Five Elements)</h4>
+                    <p>The entire universe, including our body, is made up of five elements: Earth, Water, Fire, Air, and Ether. These elements must be in balance for good health.</p>
+                </div>
+                <div class="philosophy-item">
+                    <h4>Tridosha (Three Humors)</h4>
+                    <p>The balance of the three humors – Vata (Air), Pitta (Fire), and Kapha (Water and Earth) – is crucial for maintaining health and harmony within the body.</p>
+                </div>
+                <div class="philosophy-item">
+                    <h4>Oushadha (Herbal Remedies)</h4>
+                    <p>Natural herbs and medicinal plants are used for healing. They play a central role in maintaining balance and curing diseases.</p>
+                </div>
+                <div class="philosophy-item">
+                    <h4>Varmam (Energy Points)</h4>
+                    <p>Specific energy points or pressure points that help in healing through manual techniques.</p>
+                </div>
+                <div class="philosophy-item">
+                    <h4>Meditation and Yoga</h4>
+                    <p>Mental and spiritual balance achieved through meditation, breathing exercises, and yoga.</p>
+                </div>
+            </div>
+
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Major Concepts and Treatments -->
+        <section>
+            <h2>🧪 Major Concepts and Treatments in Siddha Medicine</h2>
+
+            <h3>⚖️ Panchabhuta (Five Elements)</h3>
+            <p>According to Siddha, the human body is a microcosm of the universe. It is composed of five elements that must remain in harmony for good health:</p>
+            <ul>
+                <li><strong>Earth (Prithvi)</strong>: Provides stability and structure</li>
+                <li><strong>Water (Jala)</strong>: Facilitates fluid balance and bodily movements</li>
+                <li><strong>Fire (Agni)</strong>: Regulates digestion, metabolism, and energy</li>
+                <li><strong>Air (Vayu)</strong>: Influences respiration and circulation</li>
+                <li><strong>Ether (Akasha)</strong>: Governs space and communication within the body</li>
+            </ul>
+
+            <h3>🌿 Tridosha (Three Humors)</h3>
+            <p>The three doshas represent the physiological energies that govern all bodily functions. Siddha medicine emphasizes that a balance between Vata, Pitta, and Kapha is essential for health:</p>
+            <ul>
+                <li><strong>Vata</strong> – Associated with movement, governs circulation and respiration (Air and Ether)</li>
+                <li><strong>Pitta</strong> – Governs digestion and metabolism, responsible for heat in the body (Fire and Water)</li>
+                <li><strong>Kapha</strong> – Provides structure and lubrication, governs growth and immunity (Earth and Water)</li>
+            </ul>
+
+            <h3>🌱 Siddha Treatments</h3>
+            <p>Siddha treatments are designed to restore balance to the three doshas and the five elements:</p>
+            <ul>
+                <li><strong>Herbal Remedies (Oushadha)</strong>: Use of medicinal plants like Amla, Ashwagandha, Brahmi, and Ginseng for strengthening immunity.</li>
+                <li><strong>Varmam (Energy Point Therapy)</strong>: Physical therapy using specific energy points for healing.</li>
+                <li><strong>Panchakarma (Detoxification)</strong>: Methods like Purvakarma, Virechana, and Nasya to cleanse the body of toxins.</li>
+                <li><strong>Yoga and Meditation</strong>: Practices like pranayama and asanas for mental and physical balance.</li>
+                <li><strong>Dietary Modifications</strong>: Eating according to one's doshic constitution to promote balance.</li>
+            </ul>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Gallery Section -->
+        <section>
+            <h2>📸 Siddha Medicine - Nature's Healing</h2>
+            <div class="image-gallery">
+                <img src="static/images/splant1.jpg" alt="Herbal Plants">
+                <img src="static/images/splant2.jpg" alt="Ayurvedic Treatment">
+                <img src="static/images/splant3.jpg" alt="Traditional Medicine">
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Inspirational Quote Section -->
+        <section>
+            <h2>💡 Inspiration from Siddha Wisdom</h2>
+            <p class="quote">"Health is the greatest gift, contentment the greatest wealth, faithfulness the best relationship." – Buddha</p>
+            <p class="quote-author">– Siddha Philosophy</p>
+        </section>
+
+
+    </div>
+
+</body>
+</html>

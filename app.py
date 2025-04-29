@@ -57,6 +57,41 @@ def search_page():
 def explore():
     return render_template('explore.html')
 
+# 🆕 New Route for Docs Page
+@app.route('/docs')
+def docs():
+    return render_template('docs.html')
+
+# 🆕 New Route for Ayurveda Page
+@app.route('/ayurveda')
+def ayurveda():
+    return render_template('ayurveda.html')  # This will render the Ayurveda page
+
+# 🆕 New Route for Yoga Page
+@app.route('/yoga')
+def yoga():
+    return render_template('yoga.html')  # This will render the Yoga page
+
+# 🆕 New Route for Naturopathy Page
+@app.route('/naturopathy')
+def naturopath():
+    return render_template('naturopathy.html')  
+
+# 🆕 New Route for Unani Page
+@app.route('/unani')
+def unani():
+    return render_template('unani.html')  
+
+# 🆕 New Route for Siddha Page
+@app.route('/siddha')
+def siddha():
+    return render_template('siddha.html')  
+
+# 🆕 New Route for Homeopathy Page
+@app.route('/homeopathy')
+def homeopathy():
+    return render_template('homeopathy.html')  
+
 
 @app.route('/back_to_home')
 def back_to_home():

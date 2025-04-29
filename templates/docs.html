@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AYUSH Virtual Garden - Docs</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #e0f2e0;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #224d22;
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar-left {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #2c6e49;
+        }
+
+        .navbar-center {
+            text-align: center;
+        }
+
+        .navbar-left a,
+        .doc-card a {
+            color: #e0f2e0; /* light text for links */
+        }
+
+        .navbar-right a {
+            text-decoration: none;
+            color: #e0f2e0;
+            font-weight: bold;
+            border: 2px solid #2c6e49;
+            padding: 5px 15px;
+            border-radius: 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .navbar-right a:hover {
+            background-color:rgb(25, 41, 25);
+            color: white;
+        }
+
+        .navbar-left a:hover,
+        .doc-card a:hover {
+            color: #c2e9c2; /* slightly brighter on hover */
+        }
+
+        .navbar-center h1 {
+            font-size: 1.5rem;
+            color:rgb(123, 211, 130);
+        }
+
+        .navbar-center p {
+            font-size: 0.9rem;
+            color:rgb(161, 160, 160);
+        }
+
+
+        /* Grid Layout for Docs */
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 40px 20px;
+        }
+
+        .doc-card {
+            background-color: #1b2f1b ; /* Darker shade of green */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .doc-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Divider Line */
+        .divider {
+            width: 90%;
+            height: 2px;
+            background-color: #cce5cc;
+            margin: 40px auto;
+        }
+
+        /* External Link Button */
+        /* Layout for external links with improved styling */
+        .external-links-container {
+            display: flex;
+            justify-content: space-between;
+            background-color: #a8d5a2; /* Light green background */
+            padding: 20px 10%;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .external-links-section {
+            width: 48%;  /* Equal width for both sections */
+        }
+
+        .external-links-section a {
+            display: block;
+            margin: 10px 0;
+            padding: 8px 15px;  /* Smaller button size */
+            background-color: #1b2f1b ;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;  /* Smaller font size */
+            transition: background 0.3s ease;
+        }
+
+        .external-links-section a:hover {
+            background-color: #235239;
+        }
+
+        /* Divider between left and right sections */
+        .divider2 {
+            width: 1px;
+            background-color: #1b2f1b ; /* Green divider */
+            margin: 0 20px;
+        }        
+
+        /* Remove default link styling for card titles */
+        .navbar-left a {
+            text-decoration: none; /* Remove underline */
+            color: #2c6e49; /* Set color to match the card text */
+        }
+
+        .navbar-left a:hover {
+            color: #1f5a35; /* Change color on hover for a subtle effect */
+        }
+
+        .doc-card a {
+            text-decoration: none; /* Remove underline */
+            color: #2c6e49; /* Set color to match the card text */
+        }
+
+        .doc-card a:hover {
+            color: #1f5a35; /* Change color on hover for a subtle effect */
+        }
+
+        /* Add responsiveness for smaller screens */
+        @media (max-width: 768px) {
+            .external-links-container {
+                flex-direction: column; /* Stack sections on small screens */
+                padding: 20px 5%;
+            }
+
+            .divider {
+                display: none; /* Remove divider on small screens */
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-left" >
+            <a href="/">🌿 AYUSH Virtual Garden</a>
+        </div>
+        <div class="navbar-center">
+            <h1>DOCS</h1>
+            <p>Explore the science behind nature’s healing</p>
+        </div>
+        <div class="navbar-right">
+            <a href="{{ url_for('index_v2') }}">Back Home</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="docs-grid">
+        <div class="doc-card">
+            <h2><a href="https://www.scirp.org/journal/paperinformation?paperid=108166" target="_blank">Turmeric (Curcuma longa)</a></h2> <!-- Link added -->
+            <p>The golden spice and its feasible benefits in prospering human health.</p>
+        </div>
+        <div class="doc-card">
+            <h2><a href="https://www.liebertpub.com/doi/full/10.1089/acm.2014.0177" target="_blank">Ashwagandha (Withania somnifera)</a></h2> <!-- Link added -->
+            <p>An Alternative Treatment for Anxiety. Powerful adaptogen used for stress relief.</p>
+        </div>
+        <div class="doc-card">
+            <h2><a href="https://www.sciencedirect.com/science/article/abs/pii/S1744388121000050" target="_blank">Yoga and Respiratory Health</a></h2> <!-- Link added -->
+            <p>Effect of regular yoga practice on respiratory regulation and exercise performance.</p>
+        </div>
+        <div class="doc-card">
+            <h2><a href="https://www.sciencedirect.com/science/article/abs/pii/S0378874119349827" target="_blank">Unani Herbal Healing</a></h2> <!-- Link added -->
+            <p>Topical medicines for wound healing: A systematic review.</p>
+        </div>
+        <div class="doc-card">
+            <h2><a href="https://www.liebertpub.com/doi/abs/10.1089/acm.2010.0572" target="_blank">Naturopathy Detox Methods</a></h2> <!-- Link added -->
+            <p>Promotes natural detoxification processes.</p>
+        </div>
+        <div class="doc-card">
+            <h2><a href="https://drvalavans.in/immunity-boost-winter/" target="_blank">Homeopathy for Immunity</a></h2> <!-- Link added -->
+            <p>Enhance Your Immunity with Homeopathy's Immunomodulatory Effects.</p>
+        </div>
+        <!-- New Random Cards -->
+        <div class="doc-card">
+            <h2><a href="https://openurl.ebsco.com/EPDB%3Agcd%3A13%3A15523421/detailv2?sid=ebsco%3Aplink%3Ascholar&id=ebsco%3Agcd%3A64839834&crl=c&link_origin=scholar.google.com" target="_blank">Siddha Medicines</a></h2> <!-- Link added -->
+            <p>Fundamental Aspect and Basic Concepts.</p>
+        </div>
+        <div class="doc-card">
+            <h2><a href="https://www.liebertpub.com/doi/abs/10.1089/acm.2010.0497" target="_blank">The Science of Naturopathy</a></h2> <!-- Link added -->
+            <p>How naturopathic treatments can heal the body traditionally.</p>
+        </div>
+        <div class="doc-card">
+            <h2><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6277680/" target="_blank">The Wonders of Aloe Vera</a></h2>
+            <p>Aloe vera for your skin, hair, and overall health</p>
+        </div>
+        <div class="doc-card">
+            <h2><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3611628/" target="_blank">Discovering the Healing Power of Honey</a></h2>
+            <p>Ancient remedy with modern science backing its benefits</p>
+        </div>
+        <div class="doc-card">
+            <h2><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7070661/" target="_blank">The Science Behind Medicinal Mushrooms</a></h2>
+            <p>Exploring the therapeutic potential of fungi in traditional and modern medicine</p>
+        </div>
+        <div class="doc-card">
+            <h2><a href="https://link.springer.com/article/10.1186/s12888-020-02566-4" target="_blank">Yoga for Better Sleep</a></h2>
+            <p>How yoga poses and breathing exercises can enhance your rest</p>
+        </div>
+        <div class="doc-card">
+            <h2><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4623186/" target="_blank">Unani Medicine: An Ancient Healing System</a></h2>
+            <p>Exploring the principles of Unani medicine and its impact today</p>
+        </div>
+        <div class="doc-card">
+            <h2><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6448700/" target="_blank">The Ancient Practice of Sound Healing</a></h2>
+            <p>Exploring how vibrations and sound therapy can heal the mind and body</p>
+        </div>
+        <div class="doc-card">
+            <h2><a href="https://www.healthline.com/nutrition/adaptogens" target="_blank">The Power of Adaptogens in Stress Management</a></h2>
+            <p>Herbs and plants that help the body adapt to stress</p>
+        </div>
+        <div class="doc-card">
+            <h2><a href="https://www.psychologytoday.com/us/articles/gut-brain-connection" target="_blank">Exploring the Gut-Brain Connection</a></h2>
+            <p>The link between your digestive health and mental well-being</p>
+        </div>
+        <div class="doc-card">
+            <h2><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6466167/" target="_blank">How Aromatherapy Affects Your Mood</a></h2>
+            <p>Essential oils and their scientifically-backed benefits</p>
+        </div>
+        <div class="doc-card">
+            <h2><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7071226/" target="_blank">The Impact of Nutrition on Mental Health</a></h2>
+            <p>How your diet can influence your brain and emotional well-being</p>
+        </div>
+        <div class="doc-card">
+            <h2><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6838655/" target="_blank">Naturopathy and the Future of Natural Healing</a></h2>
+            <p>Exploring modern approaches to traditional healing practices</p>
+        </div>
+        <div class="doc-card">
+            <h2><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5587673/" target="_blank">The Ancient Science of Pranayama</a></h2>
+            <p>Breath control techniques for mind, body, and soul</p>
+        </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="divider"></div>
+
+    <!-- External Link Buttons (Side-by-Side Layout with Divider) -->
+    <div class="external-links-container">
+        <!-- Documents External Links (Left Section) -->
+        <div class="external-links-section left">
+            <a class="external-btn" href="https://scholar.google.com/" target="_blank">
+                Explore More on Google Scholar
+            </a>
+            <a class="external-btn" href="https://doaj.org/" target="_blank">
+                Explore More on DOAJ
+            </a>
+        </div>
+
+        <!-- Vertical Divider -->
+        <div class="divider2"></div>
+
+        <!-- Discoveries External Links (Right Section) -->
+        <div class="external-links-section right">
+            <a class="external-btn" href="https://sciencex.com/" target="_blank">
+                Discover More on Science X
+            </a>
+            <a class="external-btn" href="https://www.sciencedaily.com/" target="_blank">
+                Discover More on Science Daily
+            </a>
+        </div>
+    </div>
+</body>
+</html>

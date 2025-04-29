@@ -33,7 +33,7 @@
                     <li><a href="#landing"><b>Home</b></a></li>
                     <li><a href="{{ url_for('search') }}"><b>Search</b></a></li>
                     <li><a href="{{ url_for('explore') }}"><b>Explore</b></a></li>
-                    <li><a href="#"><b>Docs</b></a></li>
+                    <li><a href="{{ url_for('docs') }}"><b>Docs</b></a></li>
                     <li><a href="#"><b>Blog</b></a></li>
                 </ul>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -149,7 +149,7 @@
                 <h2 class="docs-subtitle"><b>Uncover our Resources...</b></h2>
                 <p class="docs-quote">Dive into the knowledge repository and research for a deeper understanding!</p>
                 <!-- Wrap the button in an anchor tag to make it clickable -->
-                <a >
+                <a href="{{ url_for('docs') }}" class="learn-more-btn">
                     <button class="docs-btn">Docs</button>
                 </a>
             </div>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homeopathy - AYUSH Virtual Garden</title>
+    <style>
+        /* General Styles */
+        /* Basic Reset */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            /* Navbar */
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: rgba(67, 26, 65, 0.91);
+                padding: 15px 30px;
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+
+            .navbar-left a {
+                font-weight: bold;
+                font-size: 1.2rem;
+                color: #a8d5ba;
+                text-decoration: none;
+            }
+
+            .navbar-left a:hover {
+                color: #ffffff;
+            }
+
+            .navbar-center {
+                text-align: center;
+            }
+
+            .navbar-center h1 {
+                font-size: 1.5rem;
+                color: #a8d5ba;
+            }
+
+            .navbar-center p {
+                font-size: 0.9rem;
+                color: #d2f0d2;
+            }
+
+            .navbar-right a {
+                text-decoration: none;
+                color: #a8d5ba;
+                font-weight: bold;
+                border: 2px solid #a8d5ba;
+                padding: 5px 15px;
+                border-radius: 20px;
+                transition: background 0.3s, color 0.3s;
+                margin-left: 10px;
+            }
+
+            .navbar-right a:hover {
+                background-color: #a8d5ba;
+                color: #0d270d;
+            }
+
+            body {
+                margin: 0;
+                font-family: 'Georgia', serif;
+                line-height: 1.7;
+                background: url('https://c1.wallpaperflare.com/preview/407/485/94/essential-oils-aromatherapy-spa-oil.jpg') no-repeat center center fixed;
+                background-size: cover;
+                color: #f5f5f5;
+                backdrop-filter: brightness(60%) blur(3px);
+            }
+
+            .container {
+                max-width: 1000px;
+                margin: auto;
+                padding: 40px 20px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
+            }
+
+            h1, h2, h3 {
+                text-align: center;
+                color: #ffffff;
+                margin-bottom: 20px;
+            }
+
+            p, li {
+                color: #e0e0e0;
+                font-size: 1.1em;
+            }
+
+            ul {
+            padding-left: 20px;
+            list-style-type: square;
+            }
+
+            section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            }
+
+            a {
+            color: #a3d2ca;
+            text-decoration: none;
+            }
+
+            a:hover {
+            text-decoration: underline;
+            }
+
+            blockquote {
+            font-style: italic;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 4px solid #a3d2ca;
+            color: #c8e6c9;
+            }
+
+            /* Remove default link styling for card titles */
+            .navbar-left a {
+                text-decoration: none; /* Remove underline */
+                color: #2c6e49; /* Set color to match the card text */
+            }
+
+            .navbar-left a:hover {
+                color: #1f5a35; /* Change color on hover for a subtle effect */
+            }
+
+            @media (max-width: 768px) {
+            body {
+                backdrop-filter: brightness(50%) blur(2px);
+            }
+            .container {
+                padding: 20px 10px;
+            }
+            p, li {
+                font-size: 1em;
+            }
+            }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-left" >
+            <a href="{{ url_for('index_v2') }}">🌿 AYUSH Virtual Garden</a>
+        </div>
+        <div class="navbar-center">
+            <h1>HOMEOPATHY</h1>
+            <p>Harmony of Mind, Body, and Spirit</p>
+        </div>
+        <div class="navbar-right">
+            <a href="/explore">Back to Explore</a>
+            <a href="{{ url_for('index_v2') }}">Back Home</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Dive into Homeopathy</h1>
+
+        <section>
+        <h2>What is Homeopathy?</h2>
+        <p>Homeopathy is a system of alternative medicine developed in the late 18th century by Samuel Hahnemann. It is based on the concept of "like cures like," meaning a substance that causes symptoms in a healthy person can treat similar symptoms in a sick person. Remedies are prepared through serial dilution and succussion (vigorous shaking), aiming to stimulate the body’s healing powers. Learn more about Homeopathy on [National Center for Complementary and Integrative Health](https://nccih.nih.gov/health/homeopathy).</p>
+        </section>
+
+        <section>
+        <h2>Philosophy and Core Principles</h2>
+        <ul>
+            <li><strong>Law of Similars (Like Cures Like):</strong> Homeopathy is based on the idea that substances causing symptoms in a healthy person can treat those same symptoms in an ill person. For more info, visit [Homeopathy International](https://www.homeopathyinternational.org).</li>
+            <li><strong>Law of Minimum Dose:</strong> Remedies are diluted to the minimum dose to stimulate healing without toxicity.</li>
+            <li><strong>Individualized Treatment:</strong> Each person’s treatment is tailored to their physical, emotional, and mental state.</li>
+            <li><strong>Vital Force:</strong> Homeopathy believes the body has an internal vital force that maintains balance and health.</li>
+        </ul>
+        </section>
+
+        <section>
+        <h2>Major Concepts and Treatments</h2>
+        <p>Homeopathy focuses on treating the whole person, stimulating the body’s vital force to restore balance. Remedies are made from plants, minerals, and animals. The dilution process ensures the remedy is safe yet effective. For a deeper understanding, visit [The Homeopathic Academy](https://www.homeopathicacademy.org).</p>
+        </section>
+
+        <section>
+        <h2>Common Homeopathic Treatments</h2>
+        <ul>
+            <li><strong>Arnica:</strong> For bruising, muscle soreness, post-surgery recovery.</li>
+            <li><strong>Belladonna:</strong> For high fever, sudden onset of symptoms, headaches.</li>
+            <li><strong>Calendula:</strong> For skin cuts, burns, and wounds.</li>
+            <li><strong>Nux Vomica:</strong> For digestive issues, nausea, and indigestion.</li>
+            <li><strong>Rhus Toxicodendron:</strong> For joint pain, arthritis, and muscle stiffness.</li>
+        </ul>
+        </section>  
+
+        <section>
+        <p>For information, consider exploring:
+            <a href="https://www.betterhealth.vic.gov.au/health/conditionsandtreatments/homeopathy" target="_blank">BetterHealth Channel</a> |
+            <a href="https://www.webmd.com/balance/what-is-homeopathy" target="_blank">WebMD</a>
+        </p>
+        </section>
+
+        <section>
+        <h2>Benefits of Homeopathy</h2>
+        <ul>
+            <li>Safe and natural healing, suitable for all ages and conditions.</li>
+            <li>Personalized treatment that considers emotional and physical states.</li>
+            <li>Treats root causes, promoting long-term wellness.</li>
+            <li>Minimal side effects due to highly diluted remedies.</li>
+            <li>Supports the body's self-healing mechanisms without invasive treatments.</li>
+        </ul>
+        </section>
+
+        <section>
+            <h2>Inspirational Quotes on Homeopathy</h2>
+            <blockquote>"Homeopathy is the true science of healing." – Mahatma Gandhi</blockquote>
+            <blockquote>"The physician’s high and only mission is to restore the sick to health, to cure, as it is termed." – Samuel Hahnemann (Founder of Homeopathy)</blockquote>
+            <blockquote>"Homeopathy is the safest and most effective system of medicine known to man." – Charles Frederick Menninger</blockquote>
+            <blockquote>"Homeopathy is a medicine of the future, and it’s a philosophy that is in alignment with the principles of nature." – Dr. Andrew Weil</blockquote>
+        </section>
+          
+
+        <section>
+            <h2>Conclusion</h2>
+            <p>Homeopathy offers a gentle, individualized approach to healing that aims to restore balance within the body and mind, promoting long-term health and wellness. By embracing this holistic practice, individuals can explore natural remedies that treat the root causes of ailments, supporting the body’s innate ability to heal itself.</p>
+        </section>
+                 
+        <section>
+            <p style="text-align:center; font-weight:bold; color: #4B9F6F;">Heal naturally. Restore balance. 🌱 Your path to wellness begins with homeopathy.</p>
+        </section>        
+        
+    </div>
+
+</body>
+</html>
