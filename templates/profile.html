@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('index_v2') }}" class="nav-logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+                <b>AYUSH <span>Virtual Garden</span></b>
+            </a>
+            <div class="hamburger-menu">&#9776;</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index_v2') }}">Home</a></li>
+                <li><a href="{{ url_for('blogs') }}">Blogs</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+        <div class="mobile-nav">
+            <a href="{{ url_for('index_v2') }}">Home</a>
+            <a href="{{ url_for('blogs') }}">Blogs</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        
+        <!-- Profile Header -->
+        <header class="profile-header">
+            <div class="avatar-circle">{{ user.username[0]|upper }}</div>
+            <div>
+                <h1>{{ user.username }}</h1>
+                <p>{{ user.email }}</p>
+            </div>
+        </header>
+
+        <!-- Blog Section -->
+        <section class="profile-section">
+            <h2>Your Blogs</h2>
+            {% if blogs %}
+                <div class="blogs-grid">
+                    {% for blog in blogs %}
+                        <div class="blog-card">
+                            <h3>{{ blog.title }}</h3>
+                            <p>{{ blog.content[:100] }}...</p>
+                            <div class="card-actions">
+                                <a href="{{ url_for('blog_detail', blog_id=blog.id) }}" class="btn view">View</a>
+                                <a href="{{ url_for('delete_blog', blog_id=blog.id) }}" class="btn delete">Delete</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="empty-msg">You haven't written any blogs yet.</p>
+            {% endif %}
+        </section>
+
+        <!-- Change Password -->
+        <section class="profile-section">
+            <h2>Change Password</h2>
+            <form method="POST" action="{{ url_for('change_password') }}" class="password-form">
+                <input type="password" name="current_password" placeholder="Current Password" required>
+                <input type="password" name="new_password" placeholder="New Password" required>
+                <input type="password" name="confirm_password" placeholder="Confirm New Password" required>
+                <button type="submit" class="btn full">Update Password</button>
+            </form>
+        </section>
+
+        <!-- Footer -->
+        <footer class="profile-footer">
+            <a href="{{ url_for('index_v2') }}" class="btn back">← Back to Home</a>
+        </footer>
+    </div>
+</body>
+</html>

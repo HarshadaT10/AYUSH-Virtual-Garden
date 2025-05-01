@@ -1,0 +1,267 @@
+body {
+    font-family: 'Nunito', sans-serif;
+    background: #f4f7f6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Container */
+.profile-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    box-sizing: border-box;
+}
+
+/* Profile Header */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.avatar-circle {
+    width: 60px;
+    height: 60px;
+    background-color: darkgreen;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* Sections */
+.profile-section {
+    margin-bottom: 40px;
+}
+
+.profile-section h2 {
+    font-size: 1.6rem;
+    color: darkgreen;
+    margin-bottom: 20px;
+}
+
+/* Blog Cards */
+.blogs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.blog-card {
+    background: #f9f9f9;
+    border-left: 5px solid darkgreen;
+    padding: 15px 20px;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.blog-card:hover {
+    transform: scale(1.02);
+}
+
+.blog-card h3 {
+    font-size: 1.2rem;
+    color: darkgreen;
+    margin-bottom: 10px;
+}
+
+.blog-card p {
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Buttons */
+.btn {
+    text-decoration: none;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    color: white;
+    background: darkgreen;
+    display: inline-block;
+    text-align: center;
+    transition: background 0.2s ease;
+}
+
+.btn.view:hover {
+    background: #156b15;
+}
+
+.btn.delete {
+    background: #c0392b;
+}
+
+.btn.delete:hover {
+    background: #a93226;
+}
+
+.btn.full {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.btn.back {
+    background: #2e8b57;
+}
+
+.btn.back:hover {
+    background: #256c45;
+}
+
+/* Form */
+.password-form input {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.empty-msg {
+    font-style: italic;
+    color: #777;
+    margin-top: 10px;
+    font-size: 0.95rem;
+}
+
+/* Navbar */
+.navbar {
+    background-color: darkgreen;
+    padding: 10px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline-block;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: lightgreen;
+}
+
+.hamburger-menu {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    background-color: darkgreen;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.mobile-nav a {
+    padding: 15px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 1px solid lightgray;
+}
+
+.mobile-nav a:hover {
+    background-color: green;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+
+    .mobile-nav.active {
+        display: flex;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .avatar-circle {
+        margin-bottom: 10px;
+    }
+}

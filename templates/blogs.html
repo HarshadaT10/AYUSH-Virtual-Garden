@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Blogs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blog.css') }}">
+    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet"> <!-- Quill CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('index_v2') }}" class="nav-logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+                <b>AYUSH <span>Virtual Garden</span></b>
+            </a>
+            <div class="hamburger-menu">&#9776;</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index_v2') }}">Home</a></li>
+                <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+        <div class="mobile-nav">
+            <a href="{{ url_for('index_v2') }}">Home</a>
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="blogs-header">
+        <h1 class="docs-subtitle">Explore Blogs</h1> <!-- Updated to use the docs-subtitle style -->
+    </header>
+
+    <!-- Main Content -->
+    <div class="blogs-container">
+        <!-- Left Container: Blog Collage -->
+        <div class="blogs-collage">
+            <div class="blogs-grid">
+                {% for blog in blogs %}
+                    <a href="{{ url_for('blog_detail', blog_id=blog.id) }}" class="blog-card-link">
+                        <div class="blog-card" data-year="{{ blog.created_at.year if blog.created_at }}">
+                            <img src="{{ blog.image_url or url_for('static', filename='images/default-blog.jpg') }}" alt="Blog Image">
+                            <div class="blog-content">
+                                <h3>{{ blog.title }}</h3>
+                                <p>{{ blog.content[:100]|safe }}...</p> <!-- Render content as HTML -->
+                                <p><strong>Author:</strong> {{ blog.author.email }}</p> <!-- Display author's email -->
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Right Container: Sidebar -->
+        <div class="blogs-sidebar">
+            <button class="create-blog-btn" onclick="openCreateBlogModal()">Create Blog</button>
+            <h2>Filter by Year</h2>
+            <ul class="year-list">
+                {% for year in years %}
+                    <li><button class="year-btn" onclick="filterBlogs({{ year }})">{{ year }}</button></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Create Blog Modal -->
+    <div id="createBlogModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeCreateBlogModal()">&times;</span>
+            <h2>Create a New Blog</h2>
+            <form id="createBlogForm" method="POST" action="{{ url_for('blogs') }}" enctype="multipart/form-data">
+                <div class="title-input-container">
+                    <input type="text" id="blog-title" name="title" placeholder="Enter Blog Title" required autocomplete="off">
+                    <ul id="title-suggestions" class="suggestions-list"></ul> <!-- Suggestions dropdown -->
+                </div>
+                <div id="editor-container" class="text-editor"></div> <!-- Quill Editor -->
+                <textarea name="content" id="content" style="display:none;"></textarea> <!-- Hidden textarea -->
+                <input type="file" name="image" accept="image/*"> <!-- File upload field -->
+                <select name="status">
+                    <option value="draft">Draft</option>
+                    <option value="publish">Publish</option>
+                </select>
+                <button type="submit" class="create-blog-btn">Create Blog</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script> <!-- Quill JS -->
+    <script>
+        // Initialize Quill editor
+        const quill = new Quill('#editor-container', {
+            theme: 'snow',
+            placeholder: 'Write your blog content here...',
+            modules: {
+                toolbar: [
+                    [{ header: [1, 2, 3, false] }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ list: 'ordered' }, { list: 'bullet' }],
+                    ['link', 'image', 'code-block']
+                ]
+            }
+        });
+
+        // Sync Quill content with hidden textarea on form submission
+        const form = document.getElementById('createBlogForm');
+        form.addEventListener('submit', function (event) {
+            const content = document.getElementById('content');
+            content.value = quill.root.innerHTML.trim(); // Set Quill content to hidden textarea
+
+            // Validate content manually
+            if (!content.value) {
+                event.preventDefault(); // Prevent form submission
+                alert('Blog content cannot be empty.');
+            }
+        });
+
+        function openCreateBlogModal() {
+            document.getElementById('createBlogModal').style.display = 'block';
+        }
+
+        function closeCreateBlogModal() {
+            document.getElementById('createBlogModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('createBlogModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+
+        function filterBlogs(year) {
+            const blogCards = document.querySelectorAll('.blog-card');
+            blogCards.forEach(card => {
+                if (card.dataset.year == year || year == 'all') {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Blog title suggestions
+        const titleInput = document.getElementById('blog-title');
+        const suggestionsList = document.getElementById('title-suggestions');
+
+        async function fetchSuggestions(query = '') {
+            const response = await fetch(`/title_suggestions?query=${encodeURIComponent(query)}`);
+            return await response.json();
+        }
+
+        async function updateSuggestions(query = '') {
+            const suggestions = await fetchSuggestions(query);
+            suggestionsList.innerHTML = '';
+            suggestions.forEach(suggestion => {
+                const li = document.createElement('li');
+                li.textContent = suggestion;
+                li.addEventListener('click', () => {
+                    titleInput.value = suggestion;
+                    suggestionsList.innerHTML = '';
+                });
+                suggestionsList.appendChild(li);
+            });
+        }
+
+        titleInput.addEventListener('focus', function () {
+            updateSuggestions(); // Fetch suggestions when the input is focused
+        });
+
+        titleInput.addEventListener('input', function () {
+            updateSuggestions(titleInput.value.trim());
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ blog.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blogs_detail.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('index_v2') }}" class="nav-logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+                <b>AYUSH <span>Virtual Garden</span></b>
+            </a>
+            <div class="hamburger-menu">&#9776;</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index_v2') }}">Home</a></li>
+                <li><a href="{{ url_for('blogs') }}">Blogs</a></li>
+                <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+        <div class="mobile-nav">
+            <a href="{{ url_for('index_v2') }}">Home</a>
+            <a href="{{ url_for('blogs') }}">Blogs</a>
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </nav>
+
+    <div class="blog-detail-container">
+        
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="{{ url_for('index_v2') }}">Home</a> &gt; 
+            <a href="{{ url_for('blogs') }}">Blogs</a> &gt; 
+            <span>{{ blog.title }}</span>
+        </nav>
+
+        <!-- Blog Content -->
+        <div class="blog-header">
+            <h1>{{ blog.title }}</h1>
+            <p class="blog-meta">By {{ author_email }} | {{ blog.created_at.strftime('%Y-%m-%d') if blog.created_at }}</p>
+        </div>
+
+        <div class="blog-image">
+            <img src="{{ blog.image_url or url_for('static', filename='images/default-blog.jpg') }}" alt="Blog Image">
+        </div>
+
+        <div class="blog-content">
+            <!-- Render the blog content as HTML -->
+            {{ blog.content|safe }}
+        </div>
+    </div>
+</body>
+</html>
