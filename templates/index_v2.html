@@ -202,9 +202,27 @@
         </div>
     </footer>
 
+    <!-- Chatbot Bubble and Interface -->
+    <div id="chatbot-bubble">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Chatbot" id="chatbot-icon">
+    </div>
+    <div id="chatbot-window" class="chatbot-window">
+        <div class="chatbot-header">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Chatbot" class="chatbot-header-logo">
+            <span>AYUSH Chatbot</span>
+            <span id="chatbot-close">&times;</span>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages"></div>
+        <form id="chatbot-form" autocomplete="off">
+            <input type="text" id="chatbot-input" placeholder="Ask about remedies, plants, yoga..." required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
     <script src="{{ url_for('static', filename='js/responsive.js') }}"></script>
     <script src="{{ url_for('static', filename='js/landing-page.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize dropdown

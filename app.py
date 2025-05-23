@@ -6,6 +6,11 @@ from datetime import datetime  # Import datetime for timestamps
 import os  # Import os for file handling
 from werkzeug.utils import secure_filename  # Import secure_filename for safe file uploads
 import random  # Import random for generating random suggestions
+import requests  # Already imported
+from langchain_ollama import OllamaLLM  # Restore this import
+
+# Initialize Ollama LLM once (reuse for all requests)
+llm = OllamaLLM(model="llama3")
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 app.secret_key = 'your_secret_key'
@@ -16,7 +21,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Load the dataset
-data = pd.read_excel('C:/Users/harsh/OneDrive/Desktop/MajorP-I/Medical_plants1.xlsx')
+data = pd.read_excel(r'C:\Users\harsh\venv\ayush\Medical_plants1.xlsx')
 
 # Models
 class User(db.Model):
@@ -95,7 +100,7 @@ def docs():
 
 # 🆕 New Route for Ayurveda Page
 @app.route('/ayurveda')
-def ayurveda():
+def ayurveda_page():
     return render_template('ayurveda.html')  # This will render the Ayurveda page
 
 # 🆕 New Route for Yoga Page
@@ -397,6 +402,38 @@ def title_suggestions():
 
     # Limit the number of suggestions to 10
     return jsonify(final_suggestions[:10])
+
+@app.route('/chatbot', methods=['POST'])
+def chatbot():
+    user_query = request.json.get('message', '').strip()
+    if not user_query:
+        return jsonify({'response': "Please enter a query."})
+
+    system_prompt = (
+        "You are an expert in medicinal plants and yoga. "
+        "When a user asks about a health issue (e.g., headache), respond with remedies using medicinal plants. "
+        "If yoga is relevant, suggest yoga positions or practices. "
+        "If no plant or yoga remedy is known, reply: 'Sorry, I couldn't find a plant-based remedy for that.' "
+        "Do not mention yoga unless it is relevant to the remedy."
+    )
+
+    try:
+        # Combine system prompt and user query for the LLM
+        prompt = f"{system_prompt}\nUser: {user_query}\nAssistant:"
+        reply = llm.invoke(prompt)
+        if not reply or not reply.strip():
+            reply = "Sorry, I couldn't find a plant-based remedy for that."
+    except Exception as e:
+        print(f"Ollama/LangChain error: {e}")
+        # Detect memory or connection errors and give user-friendly message
+        if "actively refused" in str(e) or "Failed to establish a new connection" in str(e):
+            reply = "Sorry, the AI server is not running. Please start Ollama by running 'ollama serve' in your terminal."
+        elif "system memory" in str(e) or "out of memory" in str(e):
+            reply = "Sorry, this model requires more RAM than is available. Please use a smaller model or add more memory."
+        else:
+            reply = "Sorry, there was an error processing your request."
+
+    return jsonify({'response': reply})
 
 if __name__ == '__main__':
     with app.app_context():
