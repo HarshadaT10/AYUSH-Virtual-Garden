@@ -10,7 +10,7 @@ import requests  # Already imported
 from langchain_ollama import OllamaLLM  # Restore this import
 
 # Initialize Ollama LLM once (reuse for all requests)
-llm = OllamaLLM(model="llama3")
+llm = OllamaLLM(model="phi3:mini")
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 app.secret_key = 'your_secret_key'
@@ -21,7 +21,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Load the dataset
-data = pd.read_excel(r'C:\Users\harsh\venv\ayush\Medical_plants1.xlsx')
+data = pd.read_excel(r'D:\Desktop\project\ayush\ayush\Medical_plants1.xlsx')
 
 # Models
 class User(db.Model):

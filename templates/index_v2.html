@@ -34,7 +34,7 @@
                     <li><a href="{{ url_for('search') }}"><b>Search</b></a></li>
                     <li><a href="{{ url_for('explore') }}"><b>Explore</b></a></li>
                     <li><a href="{{ url_for('docs') }}"><b>Docs</b></a></li>
-                    <li><a href="{{ url_for('blogs') }}"><b>Blog</b></a></li> <!-- Link to Blogs -->
+                    <li><a href="#community"><b>Blog</b></a></li> <!-- Changed to scroll to blogs section -->
                 </ul>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     {% if session.get('user_id') %}
@@ -52,7 +52,7 @@
                     <a href="{{ url_for('search') }}"><b>Search</b></a>
                     <a href="{{ url_for('explore') }}"><b>Explore</b></a>
                     <a href="{{ url_for('docs') }}"><b>Docs</b></a>
-                    <a href="{{ url_for('blogs') }}"><b>Blog</b></a> <!-- Link to Blogs -->
+                    <a href="#community"><b>Blog</b></a> <!-- Changed to scroll to blogs section -->
                     {% if session.get('user_id') %}
                         <a href="{{ url_for('profile') }}"><b>Profile</b></a>
                         <a href="{{ url_for('logout') }}"><b>Logout</b></a>
