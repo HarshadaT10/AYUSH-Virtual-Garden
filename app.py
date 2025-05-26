@@ -41,6 +41,16 @@ class Blog(db.Model):
     created_at = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)  # Timestamp for creation
     updated_at = db.Column(db.DateTime, nullable=True, onupdate=datetime.utcnow)  # Timestamp for updates
 
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    blog_id = db.Column(db.Integer, db.ForeignKey('blog.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    parent_id = db.Column(db.Integer, db.ForeignKey('comment.id'), nullable=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, onupdate=datetime.utcnow)
+    replies = db.relationship('Comment', backref=db.backref('parent', remote_side=[id]), lazy='dynamic')
+
 @app.route('/')
 def index_v2():
     # Fetch the latest blogs (limit to 8)
@@ -226,34 +236,103 @@ def blogs():
     years = sorted({blog.created_at.year for blog in published_blogs if blog.created_at}, reverse=True)  # Extract unique years
     return render_template('blogs.html', blogs=published_blogs, years=years)
 
+def build_comment_tree(comments):
+    comment_dict = {c.id: c for c in comments}
+    tree = []
+    for comment in comments:
+        if comment.parent_id is None:
+            tree.append({'comment': comment, 'replies': []})
+    for comment in comments:
+        if comment.parent_id:
+            parent = comment_dict.get(comment.parent_id)
+            if parent:
+                # Find parent in tree and append reply
+                def add_reply(node):
+                    if node['comment'].id == parent.id:
+                        node['replies'].append({'comment': comment, 'replies': []})
+                        return True
+                    for reply in node['replies']:
+                        if add_reply(reply):
+                            return True
+                    return False
+                for node in tree:
+                    add_reply(node)
+    return tree
+
 @app.route('/blog/<int:blog_id>', methods=['GET', 'POST'])
 def blog_detail(blog_id):
     blog = Blog.query.get_or_404(blog_id)
     if blog.status == 'draft' and ('user_id' not in session or blog.author_id != session['user_id']):
         flash('You are not authorized to view this blog.', 'danger')
         return redirect(url_for('index_v2'))
-    if request.method == 'POST' and 'user_id' in session and blog.author_id == session['user_id']:
-        blog.title = request.form['title']
-        blog.content = request.form['content']
-        blog.image_url = request.form['image_url']
-        blog.status = request.form['status']
-        blog.updated_at = datetime.utcnow()  # Update the timestamp
-        db.session.commit()
-        flash('Blog updated successfully!', 'success')
-        return redirect(url_for('blogs'))
-    author_email = User.query.get(blog.author_id).email  # Fetch the author's email using author_id
-    return render_template('blog_detail.html', blog=blog, author_email=author_email)
+    author_email = User.query.get(blog.author_id).email
+    # Fetch all comments for this blog
+    comments = Comment.query.filter_by(blog_id=blog_id).order_by(Comment.created_at.asc()).all()
+    # Build user_id -> username map for all users who commented (and blog author)
+    user_ids = {c.user_id for c in comments}
+    user_ids.add(blog.author_id)
+    users = User.query.filter(User.id.in_(user_ids)).all()
+    user_map = {u.id: u.username for u in users}
+    comment_tree = build_comment_tree(comments)
+    return render_template(
+        'blog_detail.html',
+        blog=blog,
+        author_email=author_email,
+        comment_tree=comment_tree,
+        session=session,
+        user_map=user_map
+    )
 
-@app.route('/delete_blog/<int:blog_id>')
-def delete_blog(blog_id):
-    blog = Blog.query.get_or_404(blog_id)
-    if 'user_id' in session and blog.author_id == session['user_id']:
-        db.session.delete(blog)
-        db.session.commit()
-        flash('Blog deleted successfully!', 'success')
-    else:
-        flash('You are not authorized to delete this blog.', 'danger')
-    return redirect(url_for('blogs'))
+@app.route('/add_comment/<int:blog_id>', methods=['POST'])
+def add_comment(blog_id):
+    if 'user_id' not in session:
+        flash('Please log in to comment.', 'danger')
+        return redirect(url_for('login'))
+    content = request.form.get('content', '').strip()
+    parent_id = request.form.get('parent_id')
+    if not content:
+        flash('Comment cannot be empty.', 'danger')
+        return redirect(url_for('blog_detail', blog_id=blog_id))
+    comment = Comment(
+        blog_id=blog_id,
+        user_id=session['user_id'],
+        content=content,
+        parent_id=int(parent_id) if parent_id else None
+    )
+    db.session.add(comment)
+    db.session.commit()
+    return redirect(url_for('blog_detail', blog_id=blog_id))
+
+@app.route('/edit_comment/<int:comment_id>', methods=['POST'])
+def edit_comment(comment_id):
+    comment = Comment.query.get_or_404(comment_id)
+    if 'user_id' not in session or comment.user_id != session['user_id']:
+        flash('You are not authorized to edit this comment.', 'danger')
+        return redirect(url_for('blog_detail', blog_id=comment.blog_id))
+    content = request.form.get('content', '').strip()
+    if not content:
+        flash('Comment cannot be empty.', 'danger')
+        return redirect(url_for('blog_detail', blog_id=comment.blog_id))
+    comment.content = content
+    db.session.commit()
+    return redirect(url_for('blog_detail', blog_id=comment.blog_id))
+
+@app.route('/delete_comment/<int:comment_id>', methods=['POST'])
+def delete_comment(comment_id):
+    comment = Comment.query.get_or_404(comment_id)
+    if 'user_id' not in session or comment.user_id != session['user_id']:
+        flash('You are not authorized to delete this comment.', 'danger')
+        return redirect(url_for('blog_detail', blog_id=comment.blog_id))
+    blog_id = comment.blog_id
+    # Delete all replies recursively
+    def delete_replies(c):
+        for reply in c.replies:
+            delete_replies(reply)
+            db.session.delete(reply)
+    delete_replies(comment)
+    db.session.delete(comment)
+    db.session.commit()
+    return redirect(url_for('blog_detail', blog_id=blog_id))
 
 @app.route('/change_password', methods=['GET', 'POST'])
 def change_password():
