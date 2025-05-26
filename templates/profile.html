@@ -4,6 +4,133 @@
     <title>Profile</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    /* Extra styles for improved grid and card look */
+    .blogs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+        gap: 24px;
+        margin-top: 20px;
+    }
+    .blog-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(34,139,34,0.08);
+        display: flex;
+        flex-direction: column;
+        transition: box-shadow 0.2s, transform 0.2s;
+        overflow: hidden;
+        border-left: 5px solid #388e3c;
+        min-height: 260px;
+        position: relative;
+        padding: 0;
+    }
+    .blog-card:hover {
+        box-shadow: 0 8px 24px rgba(34,139,34,0.18);
+        transform: translateY(-4px) scale(1.02);
+    }
+    .blog-card-image {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        background: #f4f4f4;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .blog-card-header {
+        display: flex;
+        align-items: center;
+        gap: 0.7em;
+        background: #f7faf7;
+        padding: 12px 16px 0 16px;
+    }
+    .blog-card .avatar-circle {
+        width: 32px;
+        height: 32px;
+        font-size: 1.1rem;
+        margin-right: 0.5em;
+    }
+    .blog-card-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #388e3c;
+        margin: 0;
+        flex: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .blog-card-meta {
+        font-size: 0.93em;
+        color: #888;
+        margin-left: auto;
+    }
+    .blog-card-content {
+        padding: 12px 16px;
+        font-size: 1rem;
+        color: #444;
+        flex: 1;
+        min-height: 70px;
+        word-break: break-word;
+    }
+    .blog-card-content p {
+        margin: 0 0 0.5em 0;
+        font-size: 1rem;
+        color: #444;
+        line-height: 1.6;
+    }
+    .card-actions {
+        display: flex;
+        gap: 10px;
+        padding: 0 16px 14px 16px;
+        margin-top: auto;
+    }
+    .btn {
+        text-decoration: none;
+        padding: 8px 14px;
+        font-size: 0.95rem;
+        border-radius: 4px;
+        color: white;
+        background: #388e3c;
+        display: inline-block;
+        text-align: center;
+        transition: background 0.2s;
+        border: none;
+        cursor: pointer;
+    }
+    .btn.view:hover {
+        background: #256c45;
+    }
+    .btn.delete {
+        background: #c0392b;
+    }
+    .btn.delete:hover {
+        background: #a93226;
+    }
+    .empty-msg {
+        font-style: italic;
+        color: #777;
+        margin-top: 10px;
+        font-size: 1rem;
+        text-align: center;
+    }
+    @media (max-width: 1100px) {
+        .blogs-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    @media (max-width: 700px) {
+        .blogs-grid {
+            grid-template-columns: 1fr;
+        }
+        .profile-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .avatar-circle {
+            margin-bottom: 10px;
+        }
+    }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -33,8 +160,8 @@
         <header class="profile-header">
             <div class="avatar-circle">{{ user.username[0]|upper }}</div>
             <div>
-                <h1>{{ user.username }}</h1>
-                <p>{{ user.email }}</p>
+                <h1 style="margin:0;">{{ user.username }}</h1>
+                <p style="margin:0;color:#388e3c;font-weight:600;">{{ user.email }}</p>
             </div>
         </header>
 
@@ -45,11 +172,20 @@
                 <div class="blogs-grid">
                     {% for blog in blogs %}
                         <div class="blog-card">
-                            <h3>{{ blog.title }}</h3>
-                            <p>{{ blog.content[:100] }}...</p>
+                            <img class="blog-card-image" src="{{ blog.image_url or url_for('static', filename='images/default-blog.jpg') }}" alt="Blog Image">
+                            <div class="blog-card-header">
+                                <div class="avatar-circle">{{ user.username[0]|upper }}</div>
+                                <span class="blog-card-title">{{ blog.title }}</span>
+                                <span class="blog-card-meta">{{ blog.created_at.strftime('%b %d, %Y') if blog.created_at }}</span>
+                            </div>
+                            <div class="blog-card-content">
+                                {{ blog.content[:120]|safe }}{% if blog.content|length > 120 %}...{% endif %}
+                            </div>
                             <div class="card-actions">
                                 <a href="{{ url_for('blog_detail', blog_id=blog.id) }}" class="btn view">View</a>
-                                <a href="{{ url_for('delete_blog', blog_id=blog.id) }}" class="btn delete">Delete</a>
+                                <form method="POST" action="{{ url_for('delete_blog', blog_id=blog.id) }}" style="display:inline;">
+                                    <button type="submit" class="btn delete" onclick="return confirm('Delete this blog?');">Delete</button>
+                                </form>
                             </div>
                         </div>
                     {% endfor %}

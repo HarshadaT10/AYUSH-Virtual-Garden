@@ -20,8 +20,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost/ay
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# Load the dataset
-data = pd.read_excel(r'D:\Desktop\project\ayush\ayush\Medical_plants1.xlsx')
+# Load the dataset from the root directory (relative to this file)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATASET_PATH = os.path.join(BASE_DIR, 'dataset', 'Medical_plants1.xlsx')
+data = pd.read_excel(DATASET_PATH)
 
 # Models
 class User(db.Model):
@@ -513,6 +515,17 @@ def chatbot():
             reply = "Sorry, there was an error processing your request."
 
     return jsonify({'response': reply})
+
+@app.route('/delete_blog/<int:blog_id>', methods=['POST'])
+def delete_blog(blog_id):
+    blog = Blog.query.get_or_404(blog_id)
+    if 'user_id' in session and blog.author_id == session['user_id']:
+        db.session.delete(blog)
+        db.session.commit()
+        flash('Blog deleted successfully!', 'success')
+    else:
+        flash('You are not authorized to delete this blog.', 'danger')
+    return redirect(url_for('blogs'))
 
 if __name__ == '__main__':
     with app.app_context():
